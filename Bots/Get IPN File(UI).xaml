@@ -1,0 +1,664 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_IPN_File_UI_" this:Get_IPN_File_UI_.in_SFTPHost="localhost" this:Get_IPN_File_UI_.in_SFTPPort="22" this:Get_IPN_File_UI_.in_WorkingDate="2024-11-11" this:Get_IPN_File_UI_.in_TrxUnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Unprocessed" this:Get_IPN_File_UI_.in_TrxProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Processed" this:Get_IPN_File_UI_.in_SummaryUnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNSummaryFiles\Unprocessed" this:Get_IPN_File_UI_.in_SummaryProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNSummaryFiles\Processed" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_SFTPHost" Type="InArgument(x:String)" />
+    <x:Property Name="in_SFTPPort" Type="InArgument(x:String)" />
+    <x:Property Name="in_WorkingDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_TrxUnprocessedFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_TrxProcessedFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_SummaryUnprocessedFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_SummaryProcessedFolder" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Get_IPN_File_UI__1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>Omega.SftpClient</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>Omega.SftpClient.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Services.RuntimeAnalyze</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>Omega.SftpClient</AssemblyReference>
+      <AssemblyReference>Omega.SftpClient.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Get_IPN_File_UI_" sap:VirtualizedContainerService.HintSize="1196,9269" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="str_StatusBar" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1196,9246" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Variables>
+        <Variable x:TypeArguments="x:String" Name="str_SFTPusername" />
+        <Variable x:TypeArguments="x:String" Name="str_SFTPTrxFilePath" />
+        <Variable x:TypeArguments="x:String" Name="str_WorkingDay" />
+        <Variable x:TypeArguments="x:Boolean" Name="bl_SFTPTrxFileExist" />
+        <Variable x:TypeArguments="x:Boolean" Name="bl_TrxFileProcessedBefore" />
+        <Variable x:TypeArguments="x:Int32" Name="int_LoginTimeoutSecCounter" />
+      </TryCatch.Variables>
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="1158,8973" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="str_SFTPFolderPath" />
+            <Variable x:TypeArguments="x:String" Name="str_SFTPSummaryFilePath" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1124,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Get IPN File From SFTP&quot;]" />
+          <Assign sap:VirtualizedContainerService.HintSize="1124,115" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_SFTPFolderPath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">["Settlement\177\" &amp;
+DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyy") &amp;
+"\" &amp;
+DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("MMMM")  &amp;
+"\" &amp;
+CInt(DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("dd"))&amp;
+"\"&amp; DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyyMMdd") &amp;
+"A"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="1124,115" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_SFTPTrxFilePath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_SFTPFolderPath + "\" +
+"Trx-177-"+
+DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyyMMdd")+
+"A"+
+".txt"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="1124,115" sap2010:WorkflowViewState.IdRef="Assign_4">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str_SFTPSummaryFilePath]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_SFTPFolderPath + "\" +
+"GAIB_"+
+DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture).ToString("yyyyMMdd")+
+"A_SettlementSummary"+
+".csv"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Sequence DisplayName="Check Trx File if processed before " sap:VirtualizedContainerService.HintSize="1124,413" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:FileExistsX DisplayName="File Exists" Exists="[bl_TrxFileProcessedBefore]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_TrxProcessedFolder + &quot;\&quot; +&#xA;&quot;Transaction-&quot;+&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xA;&quot;A&quot;+&#xA;&quot;.txt&quot;]" />
+            <ui:FileExistsX DisplayName="File Exists" Exists="[bl_TrxFileProcessedBefore]" sap:VirtualizedContainerService.HintSize="416,156" sap2010:WorkflowViewState.IdRef="FileExistsX_2" Path="[in_TrxUnprocessedFolder + &quot;\&quot; +&#xA;&quot;Transaction-&quot;+&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xA;&quot;A&quot;+&#xA;&quot;.txt&quot;]" />
+          </Sequence>
+          <If Condition="False" sap:VirtualizedContainerService.HintSize="1124,7982" sap2010:WorkflowViewState.IdRef="If_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,224" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;IPN File Is Processed Before ,Check -Un\Processed Folder&quot;]" />
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="1090,7597" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process" sap:VirtualizedContainerService.HintSize="1056,165" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="winscp.exe" />
+                <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="1056,282" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,171" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:StartProcess Arguments="{x:Null}" WorkingDirectory="{x:Null}" DisplayName="Start Process" FileName="C:\Program Files (x86)\WinSCP\WinSCP.exe" sap:VirtualizedContainerService.HintSize="382,111" sap2010:WorkflowViewState.IdRef="StartProcess_1" />
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                </ui:CommentOut>
+                <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="1056,122" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Application: Documents – WinSCP" sap:VirtualizedContainerService.HintSize="1056,2164" sap2010:WorkflowViewState.IdRef="NApplicationCard_4" OpenMode="Always" ScopeGuid="f04da246-3057-4d0b-89e3-d51f0f802be4" Version="V2">
+                  <uix:NApplicationCard.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,1841" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="ss:SecureString" Name="sec_SFTPPassword" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="382,211" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_3" Shortcuts="[d(hk)][d(ctrl)]n[u(ctrl)][u(hk)]" Version="V4" />
+                        <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="IPNReconciliation_SFTPCredentials" CacheStrategy="None" DisplayName="Get Credential" sap:VirtualizedContainerService.HintSize="382,175" sap2010:WorkflowViewState.IdRef="GetRobotCredential_4" Password="[sec_SFTPPassword]" Username="[str_SFTPusername]" />
+                        <uix:NClick ActivateBefore="True" ClickType="Double" DisplayName="Click 'New Site'" sap:VirtualizedContainerService.HintSize="382,189" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="HardwareEvents" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="f04da246-3057-4d0b-89e3-d51f0f802be4" Version="V4">
+                          <uix:NClick.Target>
+                            <uix:TargetAnchorable CVScreenId="040c1279-4602-41ec-8339-f8980b8ff3bc" DesignTimeRectangle="43, 45, 46, 16" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TTreeView' /&gt;&lt;ctrl name='New Site' role='outline item' /&gt;" Guid="d7b5e5ca-d727-4bd2-a409-8d05df4ec912" InformativeScreenshot="60d0ad629859067009aa2eb6653cf329.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TLoginDialog' title='Login' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                          </uix:NClick.Target>
+                        </uix:NClick>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Host'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="382,250" sap2010:WorkflowViewState.IdRef="NTypeInto_5" ScopeIdentifier="f04da246-3057-4d0b-89e3-d51f0f802be4" Text="[in_SFTPHost]" Version="V4">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable CVScreenId="040c1279-4602-41ec-8339-f8980b8ff3bc" DesignTimeRectangle="271, 132, 236, 21" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Session' /&gt;&lt;wnd cls='TEdit' idx='2' /&gt;" Guid="efe097b9-9968-466f-bf9c-ea111528525f" InformativeScreenshot="e6c0ea4c203b7fbbf49522093ec88923.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TLoginDialog' title='Login' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Port'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="382,250" sap2010:WorkflowViewState.IdRef="NTypeInto_6" ScopeIdentifier="f04da246-3057-4d0b-89e3-d51f0f802be4" Text="[in_SFTPPort]" Version="V4">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable CVScreenId="040c1279-4602-41ec-8339-f8980b8ff3bc" DesignTimeRectangle="513, 132, 82, 21" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Session' /&gt;&lt;wnd cls='TUpDownEdit' /&gt;" Guid="9dd945aa-a3ee-46f6-a8f2-e26b09dfa8b1" InformativeScreenshot="261e415cabeec12e90f1d5f9dc7f4e8f.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TLoginDialog' title='Login' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'UserName'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="382,250" sap2010:WorkflowViewState.IdRef="NTypeInto_7" ScopeIdentifier="f04da246-3057-4d0b-89e3-d51f0f802be4" Text="SFTPUser" Version="V4">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable CVScreenId="926d35f4-0fb9-40c5-8290-4382b58ae2fc" DesignTimeRectangle="271, 182, 159, 21" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Session' /&gt;&lt;wnd cls='TEdit' /&gt;" Guid="b6d49358-2063-4906-897f-6315dd6bffd0" InformativeScreenshot="ef1e1130cb91900095c57ce007d8bb38.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TLoginDialog' title='Login' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Passord'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="382,250" sap2010:WorkflowViewState.IdRef="NTypeInto_8" ScopeIdentifier="f04da246-3057-4d0b-89e3-d51f0f802be4" SecureText="[sec_SFTPPassword]" Version="V4">
+                          <uix:NTypeInto.Target>
+                            <uix:TargetAnchorable CVScreenId="926d35f4-0fb9-40c5-8290-4382b58ae2fc" DesignTimeRectangle="436, 182, 159, 21" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Session' /&gt;&lt;wnd cls='TPasswordEdit' /&gt;" Guid="cb0e3c82-0932-4ed6-85eb-039cacc04bdb" InformativeScreenshot="c0f9e9e8cad30369bb8b55aad02ba604.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TLoginDialog' title='Login' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                          </uix:NTypeInto.Target>
+                        </uix:NTypeInto>
+                        <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="382,204" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_4" Shortcuts="[d(hk)][k(enter)][u(hk)]" Version="V4" />
+                      </Sequence>
+                    </ActivityAction>
+                  </uix:NApplicationCard.Body>
+                  <uix:NApplicationCard.TargetApp>
+                    <uix:TargetApp Area="251, 166, 1327, 783" FilePath="C:\Program Files (x86)\WinSCP\winscp.exe" IconBase64="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" InformativeScreenshot="3ee05062b4d81228e26df31dac9e82c1.png" Selector="&lt;wnd app='winscp.exe' cls='TScpCommanderForm' title='Documents – WinSCP' /&gt;" Title="Login" Version="V1" />
+                  </uix:NApplicationCard.TargetApp>
+                </uix:NApplicationCard>
+                <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="1056,122" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Check If Log in Success" sap:VirtualizedContainerService.HintSize="1056,57" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" OpenMode="Never" ScopeGuid="dcae5a04-7120-4b45-b914-f4a5f11ec423" Version="V2">
+                  <uix:NApplicationCard.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1056,3028" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <uix:NGetText DisplayName="Get Text 'TTBXStatusBar'" sap:VirtualizedContainerService.HintSize="1022,189" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="dcae5a04-7120-4b45-b914-f4a5f11ec423" TextString="[str_StatusBar]" Version="V4">
+                          <uix:NGetText.Target>
+                            <uix:TargetAnchorable CVScreenId="e1cc865d-e1ad-43fc-bc26-77a8580e135c" DesignTimeRectangle="8, 753, 1311, 22" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TTBXStatusBar' /&gt;" Guid="71058956-1afe-4a01-904d-9d466d5db6ad" ImageBase64="" InformativeScreenshot="17d08f178e9746e643ba516fe897393a.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TScpCommanderForm' title='/ – SFTPuser@localhost – WinSCP' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                          </uix:NGetText.Target>
+                        </uix:NGetText>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1022,173" sap2010:WorkflowViewState.IdRef="LogMessage_11" Message="[str_StatusBar + int_LoginTimeoutSecCounter.ToString]" />
+                        <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[str_StatusBar.Contains(&quot;Connecting&quot;) And int_LoginTimeoutSecCounter &lt;5]" DisplayName="While" sap:VirtualizedContainerService.HintSize="1022,795" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                          <ui:InterruptibleWhile.Body>
+                            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,649" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Warn" Message="[int_LoginTimeoutSecCounter]" />
+                              <Assign sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_3">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:Int32">[int_LoginTimeoutSecCounter]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:Int32">[int_LoginTimeoutSecCounter+1]</InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="434,122" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                              <uix:NGetText DisplayName="Get Text 'TTBXStatusBar'" sap:VirtualizedContainerService.HintSize="434,180" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="dcae5a04-7120-4b45-b914-f4a5f11ec423" TextString="[str_StatusBar]" Version="V4">
+                                <uix:NGetText.Target>
+                                  <uix:TargetAnchorable CVScreenId="e1cc865d-e1ad-43fc-bc26-77a8580e135c" DesignTimeRectangle="8, 753, 1311, 22" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TTBXStatusBar' /&gt;" Guid="71058956-1afe-4a01-904d-9d466d5db6ad" ImageBase64="" InformativeScreenshot="17d08f178e9746e643ba516fe897393a.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TScpCommanderForm' title='/ – SFTPuser@localhost – WinSCP' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                </uix:NGetText.Target>
+                              </uix:NGetText>
+                            </Sequence>
+                          </ui:InterruptibleWhile.Body>
+                        </ui:InterruptibleWhile>
+                        <If Condition="[str_StatusBar.Contains(&quot;SFTP-3&quot;)]" sap:VirtualizedContainerService.HintSize="1022,1811" sap2010:WorkflowViewState.IdRef="If_2">
+                          <If.Then>
+                            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,224" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Fatal" Message="[&quot;Log in to SFTP Success&quot;]" />
+                            </Sequence>
+                          </If.Then>
+                          <If.Else>
+                            <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="988,1426" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="954,173" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Error" Message="[&quot;Error in Login Happened&quot;]" />
+                              <uix:NCheckState DisplayName="Check App State 'TPanel'" EnableIfNotExists="False" sap:VirtualizedContainerService.HintSize="954,601" sap2010:WorkflowViewState.IdRef="NCheckState_9" ScopeIdentifier="dcae5a04-7120-4b45-b914-f4a5f11ec423" Timeout="4" Version="V4">
+                                <uix:NCheckState.IfExists>
+                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,352" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Error" Message="[&quot;The SFTP server does not exist.&quot;]" />
+                                    <Throw Exception="[new BusinessRuleException(&quot;The SFTP server does not exist: &quot;+in_SFTPHost+&quot;-&quot;+in_SFTPPort)]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                                  </Sequence>
+                                </uix:NCheckState.IfExists>
+                                <uix:NCheckState.IfNotExists>
+                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,91" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                  </Sequence>
+                                </uix:NCheckState.IfNotExists>
+                                <uix:NCheckState.Target>
+                                  <uix:TargetAnchorable CVScreenId="a2e51746-02ac-4c7a-aec0-ee94c3944974" DesignTimeRectangle="3, 26, 358, 62" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;wnd cls='TPanel' /&gt;" Guid="09252abf-292a-4c15-b885-0291a0a3fa65" InformativeScreenshot="f9b5e00af57f1d257ca3ca36e020cfe0.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TMessageForm' title='Error' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                </uix:NCheckState.Target>
+                              </uix:NCheckState>
+                              <uix:NCheckState DisplayName="Check App State 'Access denied.'" sap:VirtualizedContainerService.HintSize="954,592" sap2010:WorkflowViewState.IdRef="NCheckState_10" ScopeIdentifier="dcae5a04-7120-4b45-b914-f4a5f11ec423" Timeout="2" Version="V4">
+                                <uix:NCheckState.IfExists>
+                                  <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,352" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Error" Message="[&quot;Access denied for SFTP user: &quot;+ str_SFTPusername]" />
+                                    <Throw Exception="[new BusinessRuleException(&quot;Access denied for SFTP user: &quot;+ str_SFTPusername)]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Throw_4" />
+                                  </Sequence>
+                                </uix:NCheckState.IfExists>
+                                <uix:NCheckState.IfNotExists>
+                                  <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,352" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Error" Message="[&quot;Unable to access the SFTP server.&quot;]" />
+                                    <Throw Exception="[new BusinessRuleException(&quot;Unable to access the SFTP server.&quot;)]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Throw_5" />
+                                  </Sequence>
+                                </uix:NCheckState.IfNotExists>
+                                <uix:NCheckState.Target>
+                                  <uix:TargetAnchorable CVScreenId="c7add508-4930-4802-a577-7a86ec2b28b6" DesignTimeRectangle="56, 136, 327, 21" DesignTimeScaleFactor="1" ElementType="ListItem" FullSelectorArgument="&lt;wnd cls='TListBox' /&gt;&lt;ctrl name='Access denied.' role='list item' /&gt;" Guid="8c258fbe-cd57-4ecc-a678-a28b3a496222" InformativeScreenshot="f4ca6667cc65eb5e1a11306796dd08e4.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TAuthenticateForm' title='Password – dfd@localhost' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                </uix:NCheckState.Target>
+                              </uix:NCheckState>
+                            </Sequence>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                    </ActivityAction>
+                  </uix:NApplicationCard.Body>
+                  <uix:NApplicationCard.TargetApp>
+                    <uix:TargetApp Area="251, 166, 1327, 783" IconBase64="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" sap2010:WorkflowViewState.IdRef="TargetApp_1" InformativeScreenshot="304de1046fa9f952d6ad82a22f740294.png" Selector="&lt;wnd app='winscp.exe' cls='TScpCommanderForm' title='Documents – WinSCP' /&gt;" Title="Documents – WinSCP" Version="V1" />
+                  </uix:NApplicationCard.TargetApp>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uix:NApplicationCard>
+                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: / – IPN_SFTPS_Server – WinSCP" sap:VirtualizedContainerService.HintSize="1056,4625" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" OpenMode="Never" ScopeGuid="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V2">
+                  <uix:NApplicationCard.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1022,4311" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Sequence DisplayName="Get Trx File" sap:VirtualizedContainerService.HintSize="988,2108" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="954,211" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_2" Shortcuts="[d(hk)][d(alt)][k(f7)][u(alt)][u(hk)]" Version="V4" />
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Transaction-20250126A.t…'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,250" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Text="[str_SFTPTrxFilePath.Substring(str_SFTPTrxFilePath.LastIndexOf(&quot;\&quot;) + 1)]" Version="V4">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable CVScreenId="203e83f8-ef4b-4664-ac94-07aaae0d43dd" DesignTimeRectangle="68, 76, 333, 15" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Filter' /&gt;&lt;wnd aaname='mask hints' cls='THistoryComboBox' /&gt;&lt;wnd aaname='mask hints' cls='Edit' /&gt;" Guid="8982f60b-396a-4af5-80d9-cd02180dc0a1" InformativeScreenshot="db35ddf99c122e2dff4a3f1fb0a666a6.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NTypeInto.Target>
+                          </uix:NTypeInto>
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Input'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,250" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Text="[(str_SFTPTrxFilePath.Substring(0, str_SFTPTrxFilePath.LastIndexOf(&quot;\&quot;))).Replace(&quot;\&quot;,&quot;/&quot;)]" Version="V4">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable CVScreenId="203e83f8-ef4b-4664-ac94-07aaae0d43dd" DesignTimeRectangle="68, 127, 419, 15" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Filter' /&gt;&lt;wnd cls='Edit' idx='2' /&gt;" Guid="6f1b0352-67b3-449d-88a6-f824bf8f5fcd" InformativeScreenshot="625afd65e57a2eac36f5ea46c5cbd199.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NTypeInto.Target>
+                          </uix:NTypeInto>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '&amp;Start'" sap:VirtualizedContainerService.HintSize="954,189" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable CVScreenId="203e83f8-ef4b-4664-ac94-07aaae0d43dd" DesignTimeRectangle="524, 42, 108, 25" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;wnd aaname='Start' cls='TButton' title='&amp;amp;Start' /&gt;" Guid="39407a98-152d-40ac-ab5b-15dd52d6b817" InformativeScreenshot="12e0d7f0ae12a1f6a7d82824d9f62e36.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NCheckState DisplayName="Check App State 'Transaction-20250126A.t…'" sap:VirtualizedContainerService.HintSize="954,1114" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Timeout="2" Version="V4">
+                            <uix:NCheckState.IfExists>
+                              <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,872" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Transaction-20250126A.t…'" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable CVScreenId="f73baf0c-1b1b-4ba8-abd6-8e0edeace72a" DesignTimeRectangle="18, 199, 542, 19" DesignTimeScaleFactor="1" ElementType="ListItem" FullSelectorArgument="&lt;wnd cls='TIEListView' /&gt;&lt;ctrl name='Trx-177-*.txt' role='list item' /&gt;" Guid="fd1c9567-8717-4e46-b72d-e6a444270d15" InformativeScreenshot="644d7a469c721aa0575ed9147370324e.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – SFTPUser@localhost' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Down&amp;load...'" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable CVScreenId="4e99aa36-aa82-44d8-9265-1ce9ac241436" DesignTimeRectangle="524, 235, 108, 25" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;wnd aaname='Download*' cls='TButton' title='Down&amp;amp;load*' /&gt;" Guid="9067779b-6033-47dd-a877-1e371e94cde2" InformativeScreenshot="2a17114cfa5b47310884a11a6c1e6c7f.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'D:\Test\*.*'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="416,250" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Text="[in_TrxUnprocessedFolder+&quot;\*.*&quot;]" Version="V4">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable CVScreenId="cc22d444-c001-4cc0-902a-0bb20c3cc8e8" DesignTimeRectangle="52, 54, 349, 15" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='Edit' idx='2' /&gt;" Guid="cf65d999-78b8-4117-89fa-6784861712ce" InformativeScreenshot="02445c1daf84e2f0128d265e37e385a2.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TCopyDialog' title='Download' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" sap:VirtualizedContainerService.HintSize="416,182" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable CVScreenId="121fef6a-7673-498c-af23-d480d3a6e362" DesignTimeRectangle="263, 162, 75, 25" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;wnd cls='TButton' title='OK' /&gt;" Guid="90ff3dff-84f2-4cb3-9831-fc3ea85def2e" InformativeScreenshot="59bef3157af8dd1e15768286ca42864b.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TCopyDialog' title='Download' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                              </Sequence>
+                            </uix:NCheckState.IfExists>
+                            <uix:NCheckState.IfNotExists>
+                              <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Throw Exception="[new BusinessRuleException(&quot;The IPN file does not exist at: &quot;+str_SFTPTrxFilePath)]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Throw_2" />
+                              </Sequence>
+                            </uix:NCheckState.IfNotExists>
+                            <uix:NCheckState.Target>
+                              <uix:TargetAnchorable CVScreenId="f73baf0c-1b1b-4ba8-abd6-8e0edeace72a" DesignTimeRectangle="18, 199, 542, 19" DesignTimeScaleFactor="1" ElementType="ListItem" FullSelectorArgument="&lt;wnd cls='TIEListView' /&gt;&lt;ctrl name='Trx-177-*.txt' role='list item' /&gt;" Guid="060fafc0-1f9d-41a4-844f-391f70ce32f6" InformativeScreenshot="9cd870929be2eb4c6c9bfd6daa10fd13.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – SFTPUser@localhost' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NCheckState.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NCheckState>
+                        </Sequence>
+                        <Sequence DisplayName="Get Summary File" sap:VirtualizedContainerService.HintSize="988,2141" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NKeyboardShortcuts ActivateBefore="True" ClickBeforeMode="None" DisplayName="Keyboard Shortcuts" sap:VirtualizedContainerService.HintSize="954,211" sap2010:WorkflowViewState.IdRef="NKeyboardShortcuts_5" Shortcuts="[d(hk)][d(alt)][k(f7)][u(alt)][u(hk)]" Version="V4" />
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Transaction-20250126A.t…'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,250" sap2010:WorkflowViewState.IdRef="NTypeInto_9" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Text="[str_SFTPSummaryFilePath.Substring(str_SFTPSummaryFilePath.LastIndexOf(&quot;\&quot;) + 1)]" Version="V4">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable CVScreenId="203e83f8-ef4b-4664-ac94-07aaae0d43dd" DesignTimeRectangle="68, 76, 333, 15" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Filter' /&gt;&lt;wnd aaname='mask hints' cls='THistoryComboBox' /&gt;&lt;wnd aaname='mask hints' cls='Edit' /&gt;" Guid="8982f60b-396a-4af5-80d9-cd02180dc0a1" InformativeScreenshot="db35ddf99c122e2dff4a3f1fb0a666a6.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NTypeInto.Target>
+                          </uix:NTypeInto>
+                          <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Input'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,250" sap2010:WorkflowViewState.IdRef="NTypeInto_10" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Text="[(str_SFTPSummaryFilePath.Substring(0, str_SFTPSummaryFilePath.LastIndexOf(&quot;\&quot;))).Replace(&quot;\&quot;,&quot;/&quot;)]" Version="V4">
+                            <uix:NTypeInto.Target>
+                              <uix:TargetAnchorable CVScreenId="203e83f8-ef4b-4664-ac94-07aaae0d43dd" DesignTimeRectangle="68, 127, 419, 15" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='TGroupBox' title='Filter' /&gt;&lt;wnd cls='Edit' idx='2' /&gt;" Guid="6f1b0352-67b3-449d-88a6-f824bf8f5fcd" InformativeScreenshot="625afd65e57a2eac36f5ea46c5cbd199.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NTypeInto.Target>
+                          </uix:NTypeInto>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click '&amp;Start'" sap:VirtualizedContainerService.HintSize="954,189" sap2010:WorkflowViewState.IdRef="NClick_7" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable CVScreenId="203e83f8-ef4b-4664-ac94-07aaae0d43dd" DesignTimeRectangle="524, 42, 108, 25" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;wnd aaname='Start' cls='TButton' title='&amp;amp;Start' /&gt;" Guid="39407a98-152d-40ac-ab5b-15dd52d6b817" InformativeScreenshot="12e0d7f0ae12a1f6a7d82824d9f62e36.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NCheckState DisplayName="Check App State 'Transaction-20250126A.t…'" sap:VirtualizedContainerService.HintSize="954,1154" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Timeout="2" Version="V4">
+                            <uix:NCheckState.IfExists>
+                              <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,872" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Transaction-20250126A.t…'" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable CVScreenId="adcd50db-6d65-49fe-b99b-8833a47ad690" DesignTimeRectangle="18, 199, 508, 19" DesignTimeScaleFactor="1" ElementType="ListItem" FullSelectorArgument="&lt;wnd cls='TIEListView' /&gt;&lt;ctrl name='GAIB_*_SettlementSummary.CSV' role='list item' /&gt;" Guid="a3e16bfa-635b-42e3-ad54-cd85c56eac3a" InformativeScreenshot="3ef0d2b461c8615bff98b48db3233936.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – SFTPUser@localhost' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Down&amp;load...'" sap:VirtualizedContainerService.HintSize="416,189" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable CVScreenId="4e99aa36-aa82-44d8-9265-1ce9ac241436" DesignTimeRectangle="524, 235, 108, 25" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;wnd aaname='Download*' cls='TButton' title='Down&amp;amp;load*' /&gt;" Guid="9067779b-6033-47dd-a877-1e371e94cde2" InformativeScreenshot="2a17114cfa5b47310884a11a6c1e6c7f.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'D:\Test\*.*'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="416,250" sap2010:WorkflowViewState.IdRef="NTypeInto_11" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Text="[in_SummaryUnprocessedFolder+&quot;\*.*&quot;]" Version="V4">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable CVScreenId="cc22d444-c001-4cc0-902a-0bb20c3cc8e8" DesignTimeRectangle="52, 54, 349, 15" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='Edit' idx='2' /&gt;" Guid="cf65d999-78b8-4117-89fa-6784861712ce" InformativeScreenshot="02445c1daf84e2f0128d265e37e385a2.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TCopyDialog' title='Download' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'OK'" sap:VirtualizedContainerService.HintSize="416,182" sap2010:WorkflowViewState.IdRef="NClick_10" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V4">
+                                  <uix:NClick.Target>
+                                    <uix:TargetAnchorable CVScreenId="121fef6a-7673-498c-af23-d480d3a6e362" DesignTimeRectangle="263, 162, 75, 25" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;wnd cls='TButton' title='OK' /&gt;" Guid="90ff3dff-84f2-4cb3-9831-fc3ea85def2e" InformativeScreenshot="59bef3157af8dd1e15768286ca42864b.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TCopyDialog' title='Download' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                                  </uix:NClick.Target>
+                                </uix:NClick>
+                              </Sequence>
+                            </uix:NCheckState.IfExists>
+                            <uix:NCheckState.IfNotExists>
+                              <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,177" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <Throw Exception="[new BusinessRuleException(&quot;The IPN file does not exist at: &quot;+str_SFTPTrxFilePath)]" sap:VirtualizedContainerService.HintSize="416,115" sap2010:WorkflowViewState.IdRef="Throw_7" />
+                              </Sequence>
+                            </uix:NCheckState.IfNotExists>
+                            <uix:NCheckState.Target>
+                              <uix:TargetAnchorable CVScreenId="adcd50db-6d65-49fe-b99b-8833a47ad690" DesignTimeRectangle="18, 199, 508, 19" DesignTimeScaleFactor="1" ElementType="ListItem" FullSelectorArgument="&lt;wnd cls='TIEListView' /&gt;&lt;ctrl name='GAIB_*_SettlementSummary.CSV' role='list item' /&gt;" Guid="74850206-17ec-4841-880a-48256cd4c7bc" InformativeScreenshot="c587b1f78cbc9326cd5ed60bd5a22db4.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – SFTPUser@localhost' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
+                            </uix:NCheckState.Target>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </uix:NCheckState>
+                        </Sequence>
+                      </Sequence>
+                    </ActivityAction>
+                  </uix:NApplicationCard.Body>
+                  <uix:NApplicationCard.TargetApp>
+                    <uix:TargetApp Area="251, -914, 1288, 716" IconBase64="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" sap2010:WorkflowViewState.IdRef="TargetApp_2" InformativeScreenshot="6a921603e5c40af416896860002570c5.png" Selector="&lt;wnd app='winscp.exe' cls='TScpCommanderForm' title='/ – IPN_SFTPS_Server – WinSCP' /&gt;" Title="/ – IPN_SFTPS_Server – WinSCP" Version="V1" />
+                  </uix:NApplicationCard.TargetApp>
+                </uix:NApplicationCard>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="1162,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="416,401" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message]" />
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Email Maker - Invoke Workflow File (Bots\Email Maker.xaml)" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Bots\Email Maker.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Case">Cannot Access SFTP</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailTemplate">warn</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailMessage">[exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailSubject" xml:space="preserve">IPN File Handling-IPN Reconciliation Robot Warning </InArgument>
+                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_HighImportanceFlag">True</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1162,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <Sequence sap:VirtualizedContainerService.HintSize="416,401" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Error" Message="[exception.Message]" />
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Email Maker - Invoke Workflow File (Bots\Email Maker.xaml)" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Bots\Email Maker.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_Case">Cannot Access SFTP</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailTemplate">error</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailMessage">["‘Unexcepected Error while Geting IPN File &lt;br&gt;"+exception.Message]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailSubject" xml:space="preserve">IPN File Handling-IPN Reconciliation Robot Error </InArgument>
+                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_HighImportanceFlag">True</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
+  </Sequence>
+</Activity>

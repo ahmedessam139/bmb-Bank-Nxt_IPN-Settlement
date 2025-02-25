@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Settlement Report</title>
+    <!--[if !mso]><!-->
+    <style>
+      @media screen {
+        .mobile-container {
+          width: 100% !important;
+          padding: 0 10px !important;
+        }
+        .stat-box {
+          display: inline-block !important;
+          width: 280px !important;
+          margin: 10px !important;
+        }
+        .mobile-stack {
+          display: block !important;
+          width: 100% !important;
+        }
+      }
+    </style>
+    <!--<![endif]-->
+  </head>
+  <body style='margin: 0; padding: 0; background-color: #f0f4f8'>
+    <table
+      width='100%'
+      cellpadding='0'
+      cellspacing='0'
+      border='0'
+      style='background-color: #f0f4f8; padding: 30px 0'
+    >
+      <tr>
+        <td align='center'>
+          <table
+            class='mobile-container'
+            width='1000'
+            cellpadding='0'
+            cellspacing='0'
+            border='0'
+            style='
+              background-color: #ffffff;
+              border-radius: 8px;
+              box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+              font-family: Arial, sans-serif;
+            '
+          >
+            <!-- Header -->
+            <tr>
+              <td
+                style='
+                  background-color: #1a73e8;
+                  padding: 40px 20px;
+                  text-align: center;
+                  border-radius: 8px 8px 0 0;
+                '
+              >
+                <h1
+                  style='
+                    margin: 0;
+                    color: #ffffff;
+                    font-size: 28px;
+                    font-weight: 600;
+                  '
+                >
+                  Settlement Report
+                </h1>
+                <p style='margin: 15px 0 0 0; color: #ffffff; font-size: 16px'>
+                  {{ReportDate}}
+                </p>
+              </td>
+            </tr>
+
+            <!-- Main Content Container -->
+            <tr>
+              <td style='padding: 40px 30px; background-color: #ffffff'>
+                <!-- Section 1: Transaction Summary -->
+                <table
+                  width='100%'
+                  cellpadding='0'
+                  cellspacing='0'
+                  border='0'
+                  style='margin-bottom: 40px'
+                >
+                  <tr>
+                    <td>
+                      <h2
+                        style='
+                          color: #1a73e8;
+                          font-size: 22px;
+                          margin: 0 0 25px 0;
+                          font-weight: 600;
+                        '
+                      >
+                        Transaction Summary
+                      </h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table
+                        width='100%'
+                        cellpadding='0'
+                        cellspacing='0'
+                        border='0'
+                      >
+                        <!-- First Row of Cards -->
+                        <tr>
+                          <!-- Total Transactions Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#e3f2fd'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #1976d2;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{TotalTrx}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #1976d2;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    Total Transactions
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!-- P2P Payer Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#f0f9f0'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #2e7d32;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{P2PPayerTrx}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #2e7d32;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    P2P Payer Trx
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!-- P2P Payee Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#fff8e1'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #856404;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{P2PPayeeTrx}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #856404;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    P2P Payee Trx
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!-- P2M Payer Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#fce4ec'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #c2185b;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{P2MPayerTrx}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #c2185b;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    P2M Payer Trx
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <!-- Second Row of Cards -->
+                        <tr>
+                          <!-- P2M Payee Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#e8eaf6'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #3f51b5;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{P2MPayeeTrx}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #3f51b5;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    P2M Payee Trx
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!-- Total Debit Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#ffebee'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #dc3545;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{TotalDebit}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #dc3545;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    Total Debit
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!-- Total Credit Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#e8f5e9'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #28a745;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{TotalCredit}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #28a745;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    Total Credit
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!-- Net Position Card -->
+                          <td
+                            width='25%'
+                            align='center'
+                            style='padding: 0 8px 20px 8px'
+                          >
+                            <table
+                              width='100%'
+                              cellpadding='0'
+                              cellspacing='0'
+                              border='0'
+                              bgcolor='#e3f2fd'
+                              style='border-radius: 8px'
+                            >
+                              <tr>
+                                <td align='center' style='padding: 24px 16px'>
+                                  <p
+                                    style='
+                                      margin: 0 0 8px 0;
+                                      color: #1a73e8;
+                                      font-size: 28px;
+                                      font-weight: bold;
+                                    '
+                                  >
+                                    {{NetPosition}}
+                                  </p>
+                                  <p
+                                    style='
+                                      margin: 0;
+                                      color: #1a73e8;
+                                      font-size: 14px;
+                                      font-weight: 500;
+                                    '
+                                  >
+                                    Net Position
+                                  </p>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Section 3: Detailed Transaction Breakdown -->
+                <table width='100%' cellpadding='0' cellspacing='0' border='0'>
+                  <tr>
+                    <td>
+                      <h2
+                        style='
+                          color: #1a73e8;
+                          font-size: 22px;
+                          margin: 0 0 25px 0;
+                          font-weight: 600;
+                        '
+                      >
+                        Detailed Transaction Breakdown
+                      </h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table
+                        width='100%'
+                        cellpadding='0'
+                        cellspacing='0'
+                        border='0'
+                        bgcolor='#fff8e1'
+                        style='border-radius: 8px'
+                      >
+                        <tr>
+                          <td style='padding: 30px'>
+                            <table
+                              width='100%'
+                              cellpadding='8'
+                              cellspacing='0'
+                              border='0'
+                            >
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  P2P Payer Transaction Amount:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #2e7d32;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{P2PPayerAmount}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  P2P Payee Transaction Amount:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #856404;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{P2PPayeeAmount}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  P2M Payer Transaction Amount:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #c2185b;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{P2MPayerAmount}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  P2M Payee Transaction Amount:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #3f51b5;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{P2MPayeeAmount}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  P2M Payer Interchange Amount:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #c2185b;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{P2MPayerInterchange}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  P2M Payee Interchange Amount:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #3f51b5;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{P2MPayeeInterchange}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  Total Debit:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #dc3545;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{DetailedTotalDebit}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  Total Credit:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #28a745;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{DetailedTotalCredit}}
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- Section 2: Summary Matching -->
+                <table
+                  width='100%'
+                  cellpadding='0'
+                  cellspacing='0'
+                  border='0'
+                  style='margin-bottom: 40px'
+                >
+                  <tr>
+                    <td>
+                      <h2
+                        style='
+                          color: #1a73e8;
+                          font-size: 22px;
+                          margin: 0 0 25px 0;
+                          font-weight: 600;
+                        '
+                      >
+                        Summary Matching
+                      </h2>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table
+                        width='100%'
+                        cellpadding='0'
+                        cellspacing='0'
+                        border='0'
+                        bgcolor='#e3f2fd'
+                        style='border-radius: 8px'
+                      >
+                        <tr>
+                          <td style='padding: 30px'>
+                            <table
+                              width='100%'
+                              cellpadding='8'
+                              cellspacing='0'
+                              border='0'
+                            >
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  Total Debit in Summary:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #dc3545;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{TotalDebitSummary}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  Total Credit in Summary:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #28a745;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{TotalCreditSummary}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  Net Position in Summary:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='
+                                    font-weight: bold;
+                                    color: #1a73e8;
+                                    font-size: 16px;
+                                  '
+                                >
+                                  {{NetPositionSummary}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  width='50%'
+                                  style='color: #2c3e50; font-weight: 500'
+                                >
+                                  Is Matched with Transactions:
+                                </td>
+                                <td
+                                  width='50%'
+                                  style='font-weight: bold; font-size: 16px'
+                                >
+                                  <table
+                                    cellpadding='0'
+                                    cellspacing='0'
+                                    border='0'
+                                    bgcolor='#e8f5e9'
+                                    style='border-radius: 4px'
+                                  >
+                                    <tr>
+                                      <td
+                                        style='
+                                          padding: 4px 12px;
+                                          color: #2e7d32;
+                                        '
+                                      >
+                                        {{IsMatched}}
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td
+                style='
+                  padding: 30px 20px;
+                  text-align: center;
+                  color: #666;
+                  font-size: 13px;
+                  border-top: 1px solid #eef2f7;
+                '
+              >
+                <p style='margin: 0 0 10px 0; color: #4a5568'>
+                  This is an automated report. Please do not reply to this
+                  email.
+                </p>
+                <p style='margin: 0 0 8px 0; color: #4a5568'>
+                  This report is generated on {{GenerationDate}}
+                </p>
+                <p
+                  style='
+                    margin: 0;
+                    color: #1a73e8;
+                    font-weight: 500;
+                    font-size: 14px;
+                  '
+                >
+                  Happy Automation!
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

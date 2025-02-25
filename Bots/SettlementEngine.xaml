@@ -1,0 +1,131 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="SettlementEngine" this:SettlementEngine.in_SettlementDate="2024-11-11" this:SettlementEngine.in_DBConnectionString="Data Source=EGLAESSAM;Integrated Security=True;Encrypt=False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_SettlementDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_DBConnectionString" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>SettlementEngine_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="SettlementEngine" sap:VirtualizedContainerService.HintSize="1143,711" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="DBConnection" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_SettlementData" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Start Settlement Engine&quot;]" />
+    <Sequence DisplayName="Get Settlement Data By Date" sap:VirtualizedContainerService.HintSize="450,515" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="[in_DBConnectionString]" DatabaseConnection="[DBConnection]" />
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DataTable="[dt_SettlementData]" DisplayName="Run Query" ExistingDbConnection="[DBConnection]" sap:VirtualizedContainerService.HintSize="416,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;SELECT &#xA;    -- Date: Extracts the date from the SwitchDate column&#xA;    CONVERT(DATE, SwitchDate) AS [Date],&#xA;&#xA;    -- TotalTrxCount: Counts the total number of transactions for the given date&#xA;    COUNT(*) AS TotalTrxCount,&#xA;&#xA;    -- P2PPayerTrxCount: Counts the number of P2P transactions where BankRole is PayerBank&#xA;    SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayerBank' THEN 1 ELSE 0 END) AS P2PPayerTrxCount,&#xA;&#xA;    -- P2PPayerTrxAmount: Sums the TransactionAmount for P2P transactions where BankRole is PayerBank&#xA;    SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayerBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) AS P2PPayerTrxAmount,&#xA;&#xA;    -- P2PPayeeTrxCount: Counts the number of P2P transactions where BankRole is PayeeBank&#xA;    SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayeeBank' THEN 1 ELSE 0 END) AS P2PPayeeTrxCount,&#xA;&#xA;    -- P2PPayeeTrxAmount: Sums the TransactionAmount for P2P transactions where BankRole is PayeeBank&#xA;    SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayeeBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) AS P2PPayeeTrxAmount,&#xA;&#xA;    -- P2MPayerTrxCount: Counts the number of P2M transactions where BankRole is PayerBank&#xA;    SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayerBank' THEN 1 ELSE 0 END) AS P2MPayerTrxCount,&#xA;&#xA;    -- P2MPayerTrxAmount: Sums the TransactionAmount for P2M transactions where BankRole is PayerBank&#xA;    SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayerBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) AS P2MPayerTrxAmount,&#xA;&#xA;    -- P2MPayerTrxInterchangeAmount: Sums the InterchangeAmount for P2M transactions where BankRole is PayerBank&#xA;    SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayerBank' THEN CAST(InterchangeAmount AS DECIMAL(18, 2)) ELSE 0 END) AS P2MPayerTrxInterchangeAmount,&#xA;&#xA;    -- P2MPayeeTrxCount: Counts the number of P2M transactions where BankRole is PayeeBank&#xA;    SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayeeBank' THEN 1 ELSE 0 END) AS P2MPayeeTrxCount,&#xA;&#xA;    -- P2MPayeeTrxAmount: Sums the TransactionAmount for P2M transactions where BankRole is PayeeBank&#xA;    SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayeeBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) AS P2MPayeeTrxAmount,&#xA;&#xA;    -- P2MPayeeTrxInterchangeAmount: Sums the InterchangeAmount for P2M transactions where BankRole is PayeeBank&#xA;    SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayeeBank' THEN CAST(InterchangeAmount AS DECIMAL(18, 2)) ELSE 0 END) AS P2MPayeeTrxInterchangeAmount,&#xA;&#xA;    -- TotalCreditAmount: Sum of P2PPayeeTrxAmount, P2MPayeeTrxAmount, and P2MPayerTrxInterchangeAmount&#xA;    SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayeeBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayeeBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayerBank' THEN CAST(InterchangeAmount AS DECIMAL(18, 2)) ELSE 0 END) AS TotalCreditAmount,&#xA;&#xA;    -- TotalDebitAmount: Sum of P2PPayerTrxAmount, P2MPayerTrxAmount, and P2MPayeeTrxInterchangeAmount&#xA;    SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayerBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayerBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayeeBank' THEN CAST(InterchangeAmount AS DECIMAL(18, 2)) ELSE 0 END) AS TotalDebitAmount,&#xA;&#xA;    -- NetPositionAmount: Calculated as TotalDebitAmount - TotalCreditAmount&#xA;    (SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayerBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayerBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayeeBank' THEN CAST(InterchangeAmount AS DECIMAL(18, 2)) ELSE 0 END))&#xA;    - (SUM(CASE WHEN TransactionType = 'P2P' AND BankRole = 'PayeeBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayeeBank' THEN CAST(TransactionAmount AS DECIMAL(18, 2)) ELSE 0 END) &#xA;    + SUM(CASE WHEN TransactionType = 'P2M' AND BankRole = 'PayerBank' THEN CAST(InterchangeAmount AS DECIMAL(18, 2)) ELSE 0 END)) AS NetPositionAmount&#xA;FROM &#xA;    [UiPath Processes Data].[dbo].[IPNSettlement_Transactions]&#xA;WHERE &#xA;    SwitchDate = '&quot; + in_SettlementDate + &quot;' -- Exact date filter&#xA;GROUP BY &#xA;    CONVERT(DATE, SwitchDate);&quot;]">
+        <ui:ExecuteQuery.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:ExecuteQuery.Parameters>
+      </ui:ExecuteQuery>
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Run Query" ExistingDbConnection="[DBConnection]" sap:VirtualizedContainerService.HintSize="416,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="[&quot;MERGE INTO [UiPath Processes Data].[dbo].[IPNSettlement_SettlementResults] AS Target &quot; &amp; &#xA;&quot;USING ( SELECT '&quot; &amp; dt_SettlementData.Rows(0)(&quot;Date&quot;).ToString &amp; &quot;' AS [Date], &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;TotalTrxCount&quot;).ToString &amp; &quot;' AS TotalTrxCount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2PPayerTrxCount&quot;).ToString &amp; &quot;' AS P2PPayerTrxCount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2PPayerTrxAmount&quot;).ToString &amp; &quot;' AS P2PPayerTrxAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2PPayeeTrxCount&quot;).ToString &amp; &quot;' AS P2PPayeeTrxCount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2PPayeeTrxAmount&quot;).ToString &amp; &quot;' AS P2PPayeeTrxAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2MPayerTrxCount&quot;).ToString &amp; &quot;' AS P2MPayerTrxCount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2MPayerTrxAmount&quot;).ToString &amp; &quot;' AS P2MPayerTrxAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2MPayerTrxInterchangeAmount&quot;).ToString &amp; &quot;' AS P2MPayerTrxInterchangeAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2MPayeeTrxCount&quot;).ToString &amp; &quot;' AS P2MPayeeTrxCount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2MPayeeTrxAmount&quot;).ToString &amp; &quot;' AS P2MPayeeTrxAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;P2MPayeeTrxInterchangeAmount&quot;).ToString &amp; &quot;' AS P2MPayeeTrxInterchangeAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;TotalCreditAmount&quot;).ToString &amp; &quot;' AS TotalCreditAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;TotalDebitAmount&quot;).ToString &amp; &quot;' AS TotalDebitAmount, &quot; &amp; &#xA;&quot;'&quot; &amp; dt_SettlementData.Rows(0)(&quot;NetPositionAmount&quot;).ToString &amp; &quot;' AS NetPositionAmount ) AS Source &quot; &amp; &#xA;&quot;ON Target.[Date] = Source.[Date] &quot; &amp; &#xA;&quot;WHEN MATCHED THEN &quot; &amp; &#xA;&quot;UPDATE SET TotalTrxCount = Source.TotalTrxCount, &quot; &amp; &#xA;&quot;P2PPayerTrxCount = Source.P2PPayerTrxCount, &quot; &amp; &#xA;&quot;P2PPayerTrxAmount = Source.P2PPayerTrxAmount, &quot; &amp; &#xA;&quot;P2PPayeeTrxCount = Source.P2PPayeeTrxCount, &quot; &amp; &#xA;&quot;P2PPayeeTrxAmount = Source.P2PPayeeTrxAmount, &quot; &amp; &#xA;&quot;P2MPayerTrxCount = Source.P2MPayerTrxCount, &quot; &amp; &#xA;&quot;P2MPayerTrxAmount = Source.P2MPayerTrxAmount, &quot; &amp; &#xA;&quot;P2MPayerTrxInterchangeAmount = Source.P2MPayerTrxInterchangeAmount, &quot; &amp; &#xA;&quot;P2MPayeeTrxCount = Source.P2MPayeeTrxCount, &quot; &amp; &#xA;&quot;P2MPayeeTrxAmount = Source.P2MPayeeTrxAmount, &quot; &amp; &#xA;&quot;P2MPayeeTrxInterchangeAmount = Source.P2MPayeeTrxInterchangeAmount, &quot; &amp; &#xA;&quot;TotalCreditAmount = Source.TotalCreditAmount, &quot; &amp; &#xA;&quot;TotalDebitAmount = Source.TotalDebitAmount, &quot; &amp; &#xA;&quot;NetPositionAmount = Source.NetPositionAmount, &quot; &amp; &#xA;&quot;SettlementGeneratedresultDate = GETDATE() &quot; &amp; &#xA;&quot;WHEN NOT MATCHED THEN &quot; &amp; &#xA;&quot;INSERT ([Date], TotalTrxCount, P2PPayerTrxCount, P2PPayerTrxAmount, P2PPayeeTrxCount, P2PPayeeTrxAmount, &quot; &amp; &#xA;&quot;P2MPayerTrxCount, P2MPayerTrxAmount, P2MPayerTrxInterchangeAmount, P2MPayeeTrxCount, P2MPayeeTrxAmount, &quot; &amp; &#xA;&quot;P2MPayeeTrxInterchangeAmount, TotalCreditAmount, TotalDebitAmount, NetPositionAmount, SettlementGeneratedresultDate) &quot; &amp; &#xA;&quot;VALUES (Source.[Date], Source.TotalTrxCount, Source.P2PPayerTrxCount, Source.P2PPayerTrxAmount, &quot; &amp; &#xA;&quot;Source.P2PPayeeTrxCount, Source.P2PPayeeTrxAmount, Source.P2MPayerTrxCount, Source.P2MPayerTrxAmount, &quot; &amp; &#xA;&quot;Source.P2MPayerTrxInterchangeAmount, Source.P2MPayeeTrxCount, Source.P2MPayeeTrxAmount, &quot; &amp; &#xA;&quot;Source.P2MPayeeTrxInterchangeAmount, Source.TotalCreditAmount, Source.TotalDebitAmount, &quot; &amp; &#xA;&quot;Source.NetPositionAmount, GETDATE());&quot;]">
+        <ui:ExecuteQuery.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:ExecuteQuery.Parameters>
+      </ui:ExecuteQuery>
+      <ui:DatabaseDisconnect DatabaseConnection="[DBConnection]" DisplayName="Disconnect from Database" sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
+    </Sequence>
+  </Sequence>
+</Activity>

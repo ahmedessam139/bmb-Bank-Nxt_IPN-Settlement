@@ -1,0 +1,247 @@
+{
+  "Workflows": [
+    {
+      "Path": null,
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&"
+      ],
+      "ArgumentsSectionElementsOrder": null,
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Main.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&e6374c77-4003-47c2-abe5-ea0aa3c7cdf0",
+        "SystemError&StateMachine_1",
+        "BusinessRuleException&StateMachine_1",
+        "Config&StateMachine_1",
+        "RetryNumber&StateMachine_1",
+        "BrowserStillOpen&TryCatch_6",
+        "str_HtmlMailBody&Sequence_10",
+        "str_ScreenshotsPath&Sequence_10",
+        "BrowserStillOpen&TryCatch_3",
+        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Test.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&b6b64598-9c8e-4b42-a3f7-35c599aec332"
+      ],
+      "ArgumentsSectionElementsOrder": [],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Process.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/CreateProjectFolders.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "str_ProjectRootPath&Sequence_1",
+        "str_FolderRelativePath&Sequence_1",
+        "str_FilesCommonPath&Sequence_1",
+        "str_FullFolderPath&Sequence_3",
+        "str_FullFolderPath&Sequence_14"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/InitAllSettings.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&37a78c08-1106-489a-bfd8-5032bfde9f21",
+        "configTable&Sequence_5",
+        "assets&Sequence_6",
+        "assetValue&Sequence_11"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ConfigFile",
+        "in_ConfigSheets",
+        "out_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/KillAllProcesses.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_AppsToKill"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Framework/InitAllApplications.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [],
+      "ArgumentsSectionElementsOrder": [
+        "in_Config"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/Email Maker.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "str_CommunicationMatrixPath&Sequence_4",
+        "glb_str_CommunicationMatrixPath&4d353a75-36a3-4b06-8060-fe5ad845561c",
+        "str_EmailBody&Sequence_1",
+        "str_CCEmails&Sequence_1",
+        "str_ToEmails&Sequence_1",
+        "dict_CCEmails&Sequence_1",
+        "dt_CommunicationMatrix&Sequence_1",
+        "dict_ToEmails&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_HighImportanceFlag",
+        "in_EmailSubject",
+        "in_EmailMessage",
+        "in_Case",
+        "in_EmailTemplate"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/Get IPN File(UI).xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b",
+        "str_SFTPSummaryFilePath&Sequence_5",
+        "str_SFTPFolderPath&Sequence_5",
+        "bl_TrxFileProcessedBefore&TryCatch_1",
+        "bl_SFTPTrxFileExist&TryCatch_1",
+        "str_SFTPTrxFilePath&TryCatch_1",
+        "int_LoginTimeoutSecCounter&TryCatch_1",
+        "str_StatusBar&Sequence_1",
+        "sec_SFTPPassword&Sequence_18",
+        "str_SFTPusername&TryCatch_1",
+        "str_WorkingDay&TryCatch_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_SummaryProcessedFolder",
+        "in_SummaryUnprocessedFolder",
+        "in_TrxProcessedFolder",
+        "in_TrxUnprocessedFolder",
+        "in_SFTPHost",
+        "in_SFTPPort",
+        "in_WorkingDate"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/Load-Parsing Settlement Summary.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b",
+        "str_SettlementDate&Sequence_3",
+        "str_NetPosition&Sequence_3",
+        "str_TotalDebit&Sequence_3",
+        "str_TotalCredit&Sequence_3",
+        "CurrentTrx&Sequence_3",
+        "DBConnection&Sequence_3",
+        "dt_SettlementSummary&Sequence_3"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_UnprocessedFolder",
+        "in_ProcessedFolder",
+        "in_FailedFolder",
+        "in_DBConnectionString"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/SettlementEngine.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&d328ca74-cfd4-4009-92d8-042334059b6a",
+        "dt_SettlementData&Sequence_1",
+        "DBConnection&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_DBConnectionString",
+        "in_SettlementDate"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/Load-Parsing Settlement Trx.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&e6374c77-4003-47c2-abe5-ea0aa3c7cdf0",
+        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b",
+        "str_CurrentFileFullText&Sequence_2",
+        "strArr_Lines&Sequence_2",
+        "CurrentTrx&Sequence_3",
+        "DBConnection&Sequence_3"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_UnprocessedFolder",
+        "in_ProcessedFolder",
+        "in_FailedFolder",
+        "in_DBConnectionString"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/MatchingTransactionsWithSummary.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "DBConnection&Sequence_4",
+        "glb_str_CommunicationMatrixPath&b6b64598-9c8e-4b42-a3f7-35c599aec332"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_DBConnectionString",
+        "in_SettlementDate"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/Reporter.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "dt_RowTransactionData&Sequence_2",
+        "dt_RecentSettlementResults&Sequence_2",
+        "str_HtmlMailTemp&Sequence_1",
+        "dt_SettlementResults&Sequence_1",
+        "glb_str_CommunicationMatrixPath&d328ca74-cfd4-4009-92d8-042334059b6a"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_ReportDate",
+        "in_DBConnectionString"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    }
+  ]
+}

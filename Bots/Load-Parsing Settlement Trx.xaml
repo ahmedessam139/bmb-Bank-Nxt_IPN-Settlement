@@ -1,0 +1,267 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Load_Parsing_Sttlement_Trx" this:Load_Parsing_Sttlement_Trx.in_UnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Unprocessed" this:Load_Parsing_Sttlement_Trx.in_ProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Processed" this:Load_Parsing_Sttlement_Trx.in_FailedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Failed" this:Load_Parsing_Sttlement_Trx.in_DBConnectionString="Data Source=EGLAESSAM;Integrated Security=True;Encrypt=False" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:si="clr-namespace:System.IO;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_UnprocessedFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_ProcessedFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_FailedFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_DBConnectionString" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Load_Parsing_Sttlement_Trx_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>System.Activities.Runtime.Collections</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.Watcher</AssemblyReference>
+      <AssemblyReference>System.IO.Packaging</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.AccessControl</AssemblyReference>
+      <AssemblyReference>System.IO.FileSystem.DriveInfo</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Load_Parsing_Sttlement_Trx" sap:VirtualizedContainerService.HintSize="1143,2486" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="660,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Start Parsing-Loading Settlement Trx&quot;]" />
+    <ui:ForEachFileX DisplayName="For Each File in Folder-Loop on files in unprocessed folder" Filter="*.txt" Folder="[in_UnprocessedFolder]" sap:VirtualizedContainerService.HintSize="660,2290" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="CreationDateOldFirst" SkipFolderWithoutPermission="False">
+      <ui:ForEachFileX.Body>
+        <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
+          <ActivityAction.Argument1>
+            <DelegateInArgument x:TypeArguments="si:FileInfo" Name="CurrentFile" />
+          </ActivityAction.Argument1>
+          <ActivityAction.Argument2>
+            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
+          </ActivityAction.Argument2>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="626,2009" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="str_CurrentFileFullText" />
+              <Variable x:TypeArguments="s:String[]" Name="strArr_Lines" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="592,1949" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <TryCatch.Try>
+                <Sequence sap:VirtualizedContainerService.HintSize="554,1698" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:Int32" Name="CurrentTrx" />
+                    <Variable x:TypeArguments="ui:DatabaseConnection" Name="DBConnection" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Process: &quot;+ CurrentFile.Name]" />
+                  <ui:ReadTextFile File="{x:Null}" Content="[str_CurrentFileFullText]" DisplayName="Read Trx Files as string" FileName="[CurrentFile.FullName]" sap:VirtualizedContainerService.HintSize="520,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+                  <Assign DisplayName="split file into lines in string array" sap:VirtualizedContainerService.HintSize="520,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:String[]">[strArr_Lines]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:String[]">[str_CurrentFileFullText.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="520,92" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="[in_DBConnectionString]" DatabaseConnection="[DBConnection]" />
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[CurrentTrx]" DisplayName="For Each CurrentLine-loop on lines " sap:VirtualizedContainerService.HintSize="520,735" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[strArr_Lines]">
+                    <ui:ForEach.Body>
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="CurrentLine" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,589" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,219" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                            <ui:CommentOut.Body>
+                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <If Condition="[CurrentTrx Mod 250 = 0]" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="If_1">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If.Then>
+                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,224" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[CurrentTrx.ToString + &quot;IPN Transaction Loaded&quot;]" />
+                                    </Sequence>
+                                  </If.Then>
+                                  <If.Else>
+                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                    </Sequence>
+                                  </If.Else>
+                                </If>
+                              </Sequence>
+                            </ui:CommentOut.Body>
+                          </ui:CommentOut>
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;IPN &quot;+(CurrentTrx+1).ToString]" />
+                          <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Run Query- insert query into data base" ExistingDbConnection="[DBConnection]" sap:VirtualizedContainerService.HintSize="452,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;INSERT INTO [UiPath Processes Data].[dbo].[IPNSettlement_Transactions]&#xA;    (TransactionId, TransactionType, SwitchDate, TransactionTimeStamp, BankRole,&#xA;     PayerPsp, PayerPspBank, PayerBank, PayeePsp, PayeePspBank, PayeeBank,&#xA;     TransactionAmount, TransactionAmountAction, TransactionAmountCurrency,&#xA;     PayerPspFeesAmount, PayerPspFeesAmountAction, PayerPspFeesAmountCurrency,&#xA;     PayerPspBearFeesAmount, PayerPspBearFeesAmountAction, PayerPspBearFeesAmountCurrency,&#xA;     InterchangeAmount, InterchangeAmountAction, InterchangeAmountCurrency,&#xA;     IpnProcessingFeesAmount, IpnProcessingFeesAmountAction, IpnProcessingFeesAmountCurrency,&#xA;     PayerMobileNumber, PayerIpa, PayerName, PayerAccountUniqueIdentifier,&#xA;     AmlPayerName, AmlPayerAddress, AmlPayerIdentificationType, AmlPayerIdentificationNumber,&#xA;     PayeeMobileNumber, PayeeIpa, PayeeName, PayeeAccountUniqueIdentifier,&#xA;     AmlPayeeName, AmlPayeeAddress, AmlPayeeIdentificationType, AmlPayeeIdentificationNumber,&#xA;     TerminalLocation, TerminalLongitude, TerminalLatitude, TransactionRemark,&#xA;     CustomerReference, Result, ResponseCode, ResponseDescription, SourceFileName)&#xA;VALUES (&#xA;    N'&quot; &amp; CurrentLine.Substring(0, 36).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(36, 32).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(68, 10).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(78, 23).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(101, 14).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(115, 20).Trim() &amp; &quot;',  -- PayerPsp&#xA;    N'&quot; &amp; CurrentLine.Substring(135, 20).Trim() &amp; &quot;',  -- PayerPspBank&#xA;    N'&quot; &amp; CurrentLine.Substring(155, 20).Trim() &amp; &quot;',  -- PayerBank&#xA;    N'&quot; &amp; CurrentLine.Substring(175, 20).Trim() &amp; &quot;',  -- PayeePsp&#xA;    N'&quot; &amp; CurrentLine.Substring(195, 20).Trim() &amp; &quot;',  -- PayeePspBank&#xA;    N'&quot; &amp; CurrentLine.Substring(215, 20).Trim() &amp; &quot;',  -- PayeeBank&#xA;    N'&quot; &amp; CurrentLine.Substring(235, 18).Trim() &amp; &quot;',  -- TransactionAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(253, 6).Trim() &amp; &quot;',   -- TransactionAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(259, 3).Trim() &amp; &quot;',   -- TransactionAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(262, 18).Trim() &amp; &quot;',  -- PayerPspFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(280, 6).Trim() &amp; &quot;',   -- PayerPspFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(286, 3).Trim() &amp; &quot;',   -- PayerPspFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(289, 18).Trim() &amp; &quot;',  -- PayerPspBearFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(307, 6).Trim() &amp; &quot;',   -- PayerPspBearFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(313, 3).Trim() &amp; &quot;',   -- PayerPspBearFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(316, 18).Trim() &amp; &quot;',  -- InterchangeAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(334, 6).Trim() &amp; &quot;',   -- InterchangeAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(340, 3).Trim() &amp; &quot;',   -- InterchangeAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(343, 18).Trim() &amp; &quot;',  -- IpnProcessingFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(361, 6).Trim() &amp; &quot;',   -- IpnProcessingFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(367, 3).Trim() &amp; &quot;',   -- IpnProcessingFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(370, 14).Trim() &amp; &quot;',  -- PayerMobileNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(384, 100).Trim() &amp; &quot;', -- PayerIpa&#xA;    N'&quot; &amp; CurrentLine.Substring(484, 100).Trim() &amp; &quot;', -- PayerName&#xA;    N'&quot; &amp; CurrentLine.Substring(584, 36).Trim() &amp; &quot;',  -- PayerAccountUniqueIdentifier&#xA;    N'&quot; &amp; CurrentLine.Substring(620, 100).Trim() &amp; &quot;', -- AmlPayerName&#xA;    N'&quot; &amp; CurrentLine.Substring(720, 100).Trim() &amp; &quot;', -- AmlPayerAddress&#xA;    N'&quot; &amp; CurrentLine.Substring(820, 8).Trim() &amp; &quot;',   -- AmlPayerIdentificationType&#xA;    N'&quot; &amp; CurrentLine.Substring(828, 30).Trim() &amp; &quot;',  -- AmlPayerIdentificationNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(858, 14).Trim() &amp; &quot;',  -- PayeeMobileNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(872, 100).Trim() &amp; &quot;', -- PayeeIpa&#xA;    N'&quot; &amp; CurrentLine.Substring(972, 100).Trim() &amp; &quot;', -- PayeeName&#xA;    N'&quot; &amp; CurrentLine.Substring(1072, 36).Trim() &amp; &quot;', -- PayeeAccountUniqueIdentifier&#xA;    N'&quot; &amp; CurrentLine.Substring(1108, 100).Trim() &amp; &quot;', -- AmlPayeeName&#xA;    N'&quot; &amp; CurrentLine.Substring(1208, 100).Trim() &amp; &quot;', -- AmlPayeeAddress&#xA;    N'&quot; &amp; CurrentLine.Substring(1308, 8).Trim() &amp; &quot;',   -- AmlPayeeIdentificationType&#xA;    N'&quot; &amp; CurrentLine.Substring(1316, 30).Trim() &amp; &quot;',  -- AmlPayeeIdentificationNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(1346, 40).Trim() &amp; &quot;',  -- TerminalLocation&#xA;    N'&quot; &amp; CurrentLine.Substring(1386, 15).Trim() &amp; &quot;',  -- TerminalLongitude&#xA;    N'&quot; &amp; CurrentLine.Substring(1401, 15).Trim() &amp; &quot;',  -- TerminalLatitude&#xA;    N'&quot; &amp; CurrentLine.Substring(1416, 100).Trim() &amp; &quot;', -- TransactionRemark&#xA;    N'&quot; &amp; CurrentLine.Substring(1516, 100).Trim() &amp; &quot;', -- CustomerReference&#xA;    N'&quot; &amp; CurrentLine.Substring(1616, 7).Trim() &amp; &quot;',   -- Result&#xA;    N'&quot; &amp; CurrentLine.Substring(1623, 5).Trim() &amp; &quot;',   -- ResponseCode&#xA;    N'&quot; &amp; CurrentLine.Substring(1628, 100).Trim() &amp; &quot;', -- ResponseDescription&#xA;    N'&quot; &amp; CurrentFile.Name &amp; &quot;'&#xA;);&quot;]">
+                            <ui:ExecuteQuery.Parameters>
+                              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                            </ui:ExecuteQuery.Parameters>
+                          </ui:ExecuteQuery>
+                        </Sequence>
+                      </ActivityAction>
+                    </ui:ForEach.Body>
+                  </ui:ForEach>
+                  <ui:DatabaseDisconnect DatabaseConnection="[DBConnection]" DisplayName="Disconnect from Database" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;All IPN Transactions Loaded&quot;]" />
+                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_ProcessedFolder]" DisplayName="Move File-into processed folder" sap:VirtualizedContainerService.HintSize="520,182" sap2010:WorkflowViewState.IdRef="MoveFile_3" Overwrite="True" Path="[CurrentFile.FullName]" />
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="558,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence sap:VirtualizedContainerService.HintSize="416,415" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Error" Message="[exception.Message]" />
+                      <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_FailedFolder]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="382,182" sap2010:WorkflowViewState.IdRef="MoveFile_2" Overwrite="True" Path="[CurrentFile.FullName]" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachFileX.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEachFileX>
+  </Sequence>
+</Activity>
