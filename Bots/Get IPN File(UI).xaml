@@ -125,7 +125,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get_IPN_File_UI_" sap:VirtualizedContainerService.HintSize="1196,9264" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get_IPN_File_UI_" sap:VirtualizedContainerService.HintSize="1143,701" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_StatusBar" />
     </Sequence.Variables>
@@ -134,7 +134,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1196,9241" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="456,678" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Variables>
         <Variable x:TypeArguments="x:String" Name="str_SFTPusername" />
         <Variable x:TypeArguments="x:String" Name="str_SFTPTrxFilePath" />
@@ -598,7 +598,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="1162,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="422,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -621,17 +621,17 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                   <InArgument x:TypeArguments="x:String" x:Key="in_Case">Cannot Access SFTP</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_EmailTemplate">warn</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_EmailMessage">[exception.Message]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailSubject" xml:space="preserve">IPN File Handling-IPN Reconciliation Robot Warning </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailSubject" xml:space="preserve">IPN File Handling-IPN Settlement Robot Warning </InArgument>
                   <InArgument x:TypeArguments="x:Boolean" x:Key="in_HighImportanceFlag">True</InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>
             </Sequence>
           </ActivityAction>
         </Catch>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1162,22" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="422,471" sap2010:WorkflowViewState.IdRef="Catch`1_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
@@ -651,7 +651,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                   <InArgument x:TypeArguments="x:String" x:Key="in_Case">Cannot Access SFTP</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_EmailTemplate">error</InArgument>
                   <InArgument x:TypeArguments="x:String" x:Key="in_EmailMessage">["‘Unexcepected Error while Geting IPN File &lt;br&gt;"+exception.Message]</InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailSubject" xml:space="preserve">IPN File Handling-IPN Reconciliation Robot Error </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_EmailSubject" xml:space="preserve">IPN File Handling-IPN Settlement Robot Error </InArgument>
                   <InArgument x:TypeArguments="x:Boolean" x:Key="in_HighImportanceFlag">True</InArgument>
                 </ui:InvokeWorkflowFile.Arguments>
               </ui:InvokeWorkflowFile>

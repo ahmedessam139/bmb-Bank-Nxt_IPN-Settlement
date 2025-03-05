@@ -115,7 +115,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Email_Maker" sap:VirtualizedContainerService.HintSize="1109,2945" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Email_Maker" sap:VirtualizedContainerService.HintSize="1143,3107" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[New Dictionary(Of String, String)]" Name="dict_ToEmails" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_CommunicationMatrix" />
@@ -129,7 +129,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Get Emails From Communication matrix to dictionary" sap:VirtualizedContainerService.HintSize="538,1638" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="Get Emails From Communication matrix to dictionary" sap:VirtualizedContainerService.HintSize="538,1800" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Default="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Reconciliation\CommunicationMatrix" Name="str_CommunicationMatrixPath" />
       </Sequence.Variables>
@@ -138,14 +138,25 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="504,114" sap2010:WorkflowViewState.IdRef="Assign_6">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[str_CommunicationMatrixPath]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Reconciliation\CommunicationMatrix</InArgument>
-        </Assign.Value>
-      </Assign>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="504,276" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="468,165" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_6">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[str_CommunicationMatrixPath]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Reconciliation\CommunicationMatrix</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ui:CommentOut.Body>
+      </ui:CommentOut>
       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="504,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[str_CommunicationMatrixPath]" />
       <ui:ReadRange Range="{x:Null}" WorkbookPathResource="{x:Null}" AddHeaders="True" DataTable="[dt_CommunicationMatrix]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="504,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="Sheet1" WorkbookPath="[str_CommunicationMatrixPath+&quot;\CommunicationMatrix.xlsx&quot;]" />
       <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_CommunicationMatrix]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="504,475" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
