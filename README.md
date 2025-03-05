@@ -1,30 +1,31 @@
-# BMB BankNXT IPN Reconciliation
+# BMB BankNXT IPN Settlement
 
-A UiPath automation project for reconciling IPN (Instant Payment Network) transactions with Core Banking data.
+A UiPath automation project for handling IPN (Instant Payment Network) Settlement processes.
 
 ## Project Overview
 
-This automation solution handles the reconciliation process between IPN transactions and Core Banking data. It automates the collection, parsing, and matching of transaction data from multiple sources to ensure accuracy and identify discrepancies.
+This automation solution streamlines the IPN Settlement process by automating various tasks and workflows related to payment network settlements. The project is built using UiPath and follows industry best practices for robotic process automation.
 
 ## Features
 
-- Automated retrieval of IPN files from SFTP server
-- Core Banking data extraction and processing
-- Parallel processing of IPN and Core Banking files
-- Database integration for data storage and retrieval
-- Reconciliation engine for transaction matching
+- Automated IPN settlement processing
 - Comprehensive error handling and logging
+- Database integration for transaction tracking
+- HTML report generation
+- Configurable workflow parameters
+- Robust exception handling
 
 ## System Requirements
 
 - UiPath Studio 19.10.2.0 or higher
 - Windows Operating System
-- Database server (for storing transaction data)
-- SFTP access for IPN files
+- Database server (SQL Server)
+- Appropriate network access and permissions
 
 ## Dependencies
 
-- Omega.SftpClient.Activities (1.2.0)
+The project uses the following UiPath packages:
+
 - UiPath.Database.Activities (1.9.0)
 - UiPath.Excel.Activities (2.24.4)
 - UiPath.Mail.Activities (1.23.11)
@@ -34,238 +35,392 @@ This automation solution handles the reconciliation process between IPN transact
 ## Project Structure
 
 ```
-├── Main.xaml              # Main workflow orchestrator
-├── Process.xaml           # Core process workflow
-├── Bots/                  # Individual bot workflows
-│   ├── Get IPN File.xaml
-│   ├── Get Core Banking File.xaml
-│   ├── Load-Parsing Core Banking File-DB.xaml
-│   ├── Load-Parsing IPN File.xaml
-│   └── Reconciliation Engine.xaml
-├── Data/                  # Data files and configurations
-├── Framework/             # Framework components
-└── SQL Operation/         # SQL scripts and operations
+├── Main.xaml                 # Main workflow orchestrator
+├── Process.xaml              # Core process workflow
+├── Test.xaml                 # Testing workflow
+├── Bots/                     # Bot-specific workflows
+├── Data/                     # Configuration and data files
+├── Framework/                # Framework components
+├── HTML Templates/           # Report templates
+├── IPN Settlement/           # Settlement-specific components
+└── SQL Operation/           # Database operations and scripts
 ```
 
-## Detailed Workflow Descriptions
+## Workflow Components
 
-### 1. Main Workflow (Main.xaml)
+### 1. IPN File Retrieval (Get IPN File(UI).xaml)
 
-**Functionality:**
+**Purpose:**
 
-- Orchestrates the entire reconciliation process
-- Manages state transitions and error handling
-- Initializes configuration and applications
+- Handles the UI automation for IPN file retrieval
+- Manages file downloads and organization
+- Validates file integrity
 
-**Inputs:**
+**Structure:**
 
-- Configuration file path
-- Configuration sheets (Settings, Constants)
-- Business process name
-
-**Outputs:**
-
-- Initialized system state
-- Application connections
-- Error logs (if any)
-
-### 2. Process Workflow (Process.xaml)
-
-**Functionality:**
-
-- Coordinates the execution of all sub-workflows
-- Manages parallel processing
-- Handles workflow transitions
+```
+├── Initialize UI Components
+├── File Retrieval Process
+│   ├── Navigate to IPN Portal
+│   ├── Download Settlement Files
+│   └── Validate Downloads
+├── File Organization
+│   ├── Sort by Date
+│   ├── Move to Processing Directory
+│   └── Backup Original Files
+└── Status Reporting
+```
 
 **Inputs:**
 
-- Configuration dictionary
-- Process state information
-
-**Outputs:**
-
-- Process execution status
-- Error handling results
-- Workflow completion status
-
-### 3. Get IPN File (Bots/Get IPN File.xaml)
-
-**Functionality:**
-
-- Connects to SFTP server
-- Downloads IPN transaction files
-- Manages file organization
-
-**Inputs:**
-
-- SFTP host and port
-- Unprocessed files path
-- Processed files path
-- Working date
+- Portal credentials
+- Date range for retrieval
+- Target directory paths
+- File naming conventions
 
 **Outputs:**
 
 - Downloaded IPN files
-- File transfer logs
-- Processing status
-
-### 4. Get Core Banking File (Bots/Get Core Banking File.xaml)
-
-**Functionality:**
-
-- Retrieves transaction data from Core Banking system
-- Validates file format and content
-- Prepares data for processing
-
-**Inputs:**
-
-- Core Banking system connection details
-- File retrieval parameters
-- Date range for transactions
-
-**Outputs:**
-
-- Core Banking transaction files
-- Validation results
 - File retrieval logs
+- Validation status
+- Error reports
 
-### 5. Load-Parsing Core Banking File-DB (Bots/Load-Parsing Core Banking File-DB.xaml)
+### 2. Settlement Transaction Processing (Load-Parsing Settlement Trx.xaml)
 
-**Functionality:**
+**Purpose:**
 
-- Parses Core Banking file contents
-- Validates data structure
-- Loads data into database
-
-**Inputs:**
-
-- Unprocessed Core Banking files
-- Database connection string
-- File paths (Unprocessed, Processed, Failed)
-
-**Outputs:**
-
-- Parsed transaction records
-- Database insertion results
-- Processing logs
-- Failed records (if any)
-
-### 6. Load-Parsing IPN File (Bots/Load-Parsing IPN File.xaml)
-
-**Functionality:**
-
-- Parses IPN file contents
+- Parses settlement transaction files
 - Validates transaction data
-- Stores in database for reconciliation
+- Prepares data for settlement engine
+
+**Structure:**
+
+```
+├── File Validation
+│   ├── Check File Format
+│   ├── Validate Data Structure
+│   └── Extract Transaction Data
+├── Data Transformation
+│   ├── Parse Transactions
+│   ├── Format Data Fields
+│   └── Apply Business Rules
+└── Database Operations
+    ├── Store Transactions
+    └── Update Processing Status
+```
 
 **Inputs:**
 
-- Unprocessed IPN files
-- Database connection string
-- File paths (Unprocessed, Processed, Failed)
+- Raw settlement files
+- Validation rules
+- Data transformation mappings
+- Database connection details
 
 **Outputs:**
 
-- Parsed IPN records
-- Database insertion status
+- Processed transactions
+- Validation reports
+- Error logs
+- Processing statistics
+
+### 3. Settlement Summary Processing (Load-Parsing Settlement Summary.xaml)
+
+**Purpose:**
+
+- Processes settlement summary files
+- Aggregates transaction data
+- Generates summary reports
+
+**Structure:**
+
+```
+├── Summary File Processing
+│   ├── Read Summary Data
+│   ├── Validate Totals
+│   └── Extract Key Metrics
+├── Data Aggregation
+│   ├── Group Transactions
+│   ├── Calculate Totals
+│   └── Validate Balances
+└── Summary Storage
+    ├── Update Database
+    └── Generate Reports
+```
+
+**Inputs:**
+
+- Settlement summary files
+- Aggregation rules
+- Validation parameters
+- Reporting templates
+
+**Outputs:**
+
+- Processed summaries
 - Validation results
-- Error logs (if any)
+- Aggregated reports
+- Exception logs
 
-### 7. Reconciliation Engine (Bots/Reconciliation Engine.xaml)
+### 4. Settlement Engine (SettlementEngine.xaml)
 
-**Functionality:**
+**Purpose:**
 
-- Matches IPN and Core Banking transactions
-- Identifies discrepancies
-- Generates reconciliation reports
-- Handles exception cases
+- Core settlement processing logic
+- Matches and reconciles transactions
+- Handles settlement calculations
+
+**Structure:**
+
+```
+├── Transaction Matching
+│   ├── Load Transaction Data
+│   ├── Apply Matching Rules
+│   └── Identify Exceptions
+├── Settlement Processing
+│   ├── Calculate Settlements
+│   ├── Apply Fee Structure
+│   └── Process Adjustments
+└── Results Management
+    ├── Store Results
+    └── Generate Reports
+```
 
 **Inputs:**
 
-- Database connection string
-- Reconciliation mapping sheet path
-- Transaction matching criteria
-- Tolerance settings
+- Transaction data
+- Matching rules
+- Settlement parameters
+- Fee configurations
 
 **Outputs:**
 
-- Matched transactions report
-- Unmatched transactions list
-- Discrepancy details
-- Reconciliation summary
+- Matched transactions
+- Settlement calculations
 - Exception reports
+- Processing logs
+
+### 5. Under-Settlement Processing (UnderSettlementCalculation.xaml)
+
+**Purpose:**
+
+- Handles under-settlement scenarios
+- Calculates adjustment amounts
+- Manages settlement exceptions
+
+**Structure:**
+
+```
+├── Exception Analysis
+│   ├── Identify Under-Settlements
+│   ├── Calculate Variances
+│   └── Apply Thresholds
+├── Adjustment Processing
+│   ├── Calculate Adjustments
+│   ├── Apply Business Rules
+│   └── Update Records
+└── Reporting
+    ├── Generate Exception Reports
+    └── Update Settlement Status
+```
+
+**Inputs:**
+
+- Settlement data
+- Threshold parameters
+- Adjustment rules
+- Processing criteria
+
+**Outputs:**
+
+- Adjustment calculations
+- Exception reports
+- Updated settlement records
+- Processing summary
+
+### 6. Transaction Matching (MatchingTransactionsWithSummary.xaml)
+
+**Purpose:**
+
+- Matches transactions with summary records
+- Validates transaction totals
+- Identifies discrepancies
+
+**Structure:**
+
+```
+├── Data Collection
+│   ├── Load Transactions
+│   ├── Load Summary Data
+│   └── Prepare for Matching
+├── Matching Process
+│   ├── Apply Matching Logic
+│   ├── Validate Matches
+│   └── Handle Exceptions
+└── Results Processing
+    ├── Generate Match Reports
+    └── Update Status
+```
+
+**Inputs:**
+
+- Transaction records
+- Summary data
+- Matching criteria
+- Validation rules
+
+**Outputs:**
+
+- Matched records
+- Discrepancy reports
+- Validation logs
+- Status updates
+
+### 7. Report Generation (Reporter.xaml)
+
+**Purpose:**
+
+- Generates comprehensive reports
+- Creates settlement summaries
+- Produces audit trails
+
+**Structure:**
+
+```
+├── Data Gathering
+│   ├── Collect Settlement Data
+│   ├── Get Processing Results
+│   └── Load Templates
+├── Report Generation
+│   ├── Create Settlement Reports
+│   ├── Generate Summaries
+│   └── Format Output
+└── Distribution
+    ├── Save Reports
+    └── Notify Stakeholders
+```
+
+**Inputs:**
+
+- Settlement data
+- Report templates
+- Output parameters
+- Distribution lists
+
+**Outputs:**
+
+- Settlement reports
+- Summary documents
+- Audit reports
+- Distribution logs
+
+### 8. Email Notification (Email Maker.xaml)
+
+**Purpose:**
+
+- Handles email notifications
+- Manages report distribution
+- Sends status updates
+
+**Structure:**
+
+```
+├── Email Preparation
+│   ├── Load Templates
+│   ├── Gather Attachments
+│   └── Format Content
+├── Distribution
+│   ├── Build Recipients List
+│   ├── Send Emails
+│   └── Handle Failures
+└── Logging
+    ├── Track Deliveries
+    └── Update Status
+```
+
+**Inputs:**
+
+- Email templates
+- Recipient lists
+- Attachment files
+- Notification rules
+
+**Outputs:**
+
+- Sent emails
+- Delivery status
+- Error reports
+- Activity logs
 
 ## Configuration
 
-The project uses a configuration file (`Data/Config.xlsx`) with the following key settings:
+The project uses configuration files stored in the `Data/` directory. Key configurations include:
 
-- SFTP connection details
-- File paths for processing
 - Database connection strings
-- Reconciliation mapping configurations
+- Process parameters
+- Business rules
+- Logging settings
 
-## Input Files
+## Input/Output
 
-1. **IPN Files**
+### Input
 
-   - Location: Retrieved from SFTP server
-   - Format: As per IPN specification
-   - Processing folders:
-     - Unprocessed: `IPNFilesUnprocessed_Path`
-     - Processed: `IPNFilesProcessed_Path`
-     - Failed: `IPNFilesFailed_Path`
+- Settlement files
+- Configuration data
+- Transaction records
 
-2. **Core Banking Files**
-   - Location: Retrieved from Core Banking system
-   - Processing folders:
-     - Unprocessed: `CoreBankingFilesUnprocessed_Path`
-     - Processed: `CoreBankingFilesProcessed_Path`
-     - Failed: `CoreBankingFilesFailed_Path`
+### Output
 
-## Output
-
-1. **Database Records**
-
-   - Processed IPN transactions
-   - Core Banking transactions
-   - Reconciliation results
-
-2. **Reconciliation Reports**
-   - Matched transactions
-   - Unmatched transactions
-   - Discrepancy reports
+- Settlement reports
+- HTML-formatted results
+- Processing logs
+- Exception reports
 
 ## Error Handling
 
-- Comprehensive error logging
-- Failed file management
-- Process recovery mechanisms
-- Error notification system
+The project implements comprehensive error handling:
+
+- Detailed logging of exceptions
+- Error recovery mechanisms
+- Notification system for critical errors
+- Transaction rollback capabilities
 
 ## Best Practices
 
-1. **File Management**
+1. **Code Organization**
 
-   - Regular cleanup of processed files
-   - Maintain backup of important data
-   - Follow naming conventions
+   - Modular workflow design
+   - Clear separation of concerns
+   - Consistent naming conventions
 
-2. **Database Operations**
+2. **Performance**
 
-   - Regular database maintenance
-   - Index optimization
-   - Data archival strategy
+   - Optimized database operations
+   - Efficient resource utilization
+   - Parallel processing where applicable
 
-3. **Monitoring**
-   - Monitor SFTP connectivity
-   - Track processing times
-   - Monitor database performance
+3. **Maintenance**
+   - Regular backup procedures
+   - Version control
+   - Documentation updates
 
 ## Support
 
-For technical support or questions, please contact the development team.
+For technical support or inquiries, please contact:
 
-## Version History
+- Project Team Lead
+- System Administrator
+- Database Administrator
+
+## Version Information
 
 - Current Version: 1.0.18
 - Last Updated: 2024
+- Framework: Windows
+
+## License
+
+Proprietary - All rights reserved
+
+---
+
+**Note:** This documentation is maintained by the BMB BankNXT development team. For any updates or modifications, please follow the standard change management process.
