@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Get_IPN_File_UI_" this:Get_IPN_File_UI_.in_SFTPHost="localhost" this:Get_IPN_File_UI_.in_SFTPPort="22" this:Get_IPN_File_UI_.in_WorkingDate="2024-11-11" this:Get_IPN_File_UI_.in_TrxUnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Unprocessed" this:Get_IPN_File_UI_.in_TrxProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Processed" this:Get_IPN_File_UI_.in_SummaryUnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNSummaryFiles\Unprocessed" this:Get_IPN_File_UI_.in_SummaryProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNSummaryFiles\Processed" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_IPN_File_UI_" this:Get_IPN_File_UI_.in_SFTPHost="localhost" this:Get_IPN_File_UI_.in_SFTPPort="22" this:Get_IPN_File_UI_.in_WorkingDate="2025-03-05" this:Get_IPN_File_UI_.in_TrxUnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Unprocessed" this:Get_IPN_File_UI_.in_TrxProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNTrxFiles\Processed" this:Get_IPN_File_UI_.in_SummaryUnprocessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNSummaryFiles\Unprocessed" this:Get_IPN_File_UI_.in_SummaryProcessedFolder="D:\Work\Bank-NXT\Projects\UiPath Processes Data\IPN Settlement\IPNSummaryFiles\Processed" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ss="clr-namespace:System.Security;assembly=System.Private.CoreLib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_SFTPHost" Type="InArgument(x:String)" />
     <x:Property Name="in_SFTPPort" Type="InArgument(x:String)" />
@@ -125,7 +125,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Get_IPN_File_UI_" sap:VirtualizedContainerService.HintSize="1196,9269" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Get_IPN_File_UI_" sap:VirtualizedContainerService.HintSize="1196,9264" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_StatusBar" />
     </Sequence.Variables>
@@ -134,7 +134,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1196,9246" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1196,9241" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <TryCatch.Variables>
         <Variable x:TypeArguments="x:String" Name="str_SFTPusername" />
         <Variable x:TypeArguments="x:String" Name="str_SFTPTrxFilePath" />
@@ -144,7 +144,7 @@
         <Variable x:TypeArguments="x:Int32" Name="int_LoginTimeoutSecCounter" />
       </TryCatch.Variables>
       <TryCatch.Try>
-        <Sequence sap:VirtualizedContainerService.HintSize="1158,8973" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <Sequence sap:VirtualizedContainerService.HintSize="1158,8968" sap2010:WorkflowViewState.IdRef="Sequence_5">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="str_SFTPFolderPath" />
             <Variable x:TypeArguments="x:String" Name="str_SFTPSummaryFilePath" />
@@ -195,16 +195,16 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
 ".csv"]</InArgument>
             </Assign.Value>
           </Assign>
-          <Sequence DisplayName="Check Trx File if processed before " sap:VirtualizedContainerService.HintSize="1124,413" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Check Trx File if processed before " sap:VirtualizedContainerService.HintSize="1124,421" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:FileExistsX DisplayName="File Exists" Exists="[bl_TrxFileProcessedBefore]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_TrxProcessedFolder + &quot;\&quot; +&#xA;&quot;Transaction-&quot;+&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xA;&quot;A&quot;+&#xA;&quot;.txt&quot;]" />
-            <ui:FileExistsX DisplayName="File Exists" Exists="[bl_TrxFileProcessedBefore]" sap:VirtualizedContainerService.HintSize="416,156" sap2010:WorkflowViewState.IdRef="FileExistsX_2" Path="[in_TrxUnprocessedFolder + &quot;\&quot; +&#xA;&quot;Transaction-&quot;+&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xA;&quot;A&quot;+&#xA;&quot;.txt&quot;]" />
+            <ui:FileExistsX DisplayName="File Exists" Exists="[bl_TrxFileProcessedBefore]" sap:VirtualizedContainerService.HintSize="416,165" sap2010:WorkflowViewState.IdRef="FileExistsX_1" Path="[in_TrxProcessedFolder + &quot;\&quot; +&#xD;&#xA;&quot;Trx-177-&quot;+&#xD;&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xD;&#xA;&quot;A&quot;+&#xD;&#xA;&quot;.txt&quot;]" />
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="416,164" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Warn" Message="[in_TrxProcessedFolder + &quot;\&quot; +&#xD;&#xA;&quot;Trx-177-&quot;+&#xD;&#xA;DateTime.ParseExact(in_WorkingDate, &quot;yyyy-MM-dd&quot;, System.Globalization.CultureInfo.InvariantCulture).ToString(&quot;yyyyMMdd&quot;)+&#xD;&#xA;&quot;A&quot;+&#xD;&#xA;&quot;.txt&quot;]" />
           </Sequence>
-          <If Condition="False" sap:VirtualizedContainerService.HintSize="1124,7982" sap2010:WorkflowViewState.IdRef="If_1">
+          <If Condition="[bl_TrxFileProcessedBefore]" sap:VirtualizedContainerService.HintSize="1124,7969" sap2010:WorkflowViewState.IdRef="If_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -222,7 +222,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="1090,7597" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="1090,7584" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -294,7 +294,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                   </uix:NApplicationCard.TargetApp>
                 </uix:NApplicationCard>
                 <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="1056,122" sap2010:WorkflowViewState.IdRef="Delay_2" />
-                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Check If Log in Success" sap:VirtualizedContainerService.HintSize="1056,57" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" OpenMode="Never" ScopeGuid="dcae5a04-7120-4b45-b914-f4a5f11ec423" Version="V2">
+                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Check If Log in Success" sap:VirtualizedContainerService.HintSize="1056,84" sap2010:WorkflowViewState.IdRef="NApplicationCard_6" OpenMode="Never" ScopeGuid="dcae5a04-7120-4b45-b914-f4a5f11ec423" Version="V2">
                   <uix:NApplicationCard.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
@@ -312,7 +312,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                           </uix:NGetText.Target>
                         </uix:NGetText>
                         <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1022,173" sap2010:WorkflowViewState.IdRef="LogMessage_11" Message="[str_StatusBar + int_LoginTimeoutSecCounter.ToString]" />
-                        <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[str_StatusBar.Contains(&quot;Connecting&quot;) And int_LoginTimeoutSecCounter &lt;5]" DisplayName="While" sap:VirtualizedContainerService.HintSize="1022,795" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                        <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[str_StatusBar.Contains(&quot;Connecting&quot;) And int_LoginTimeoutSecCounter &lt;10]" DisplayName="While" sap:VirtualizedContainerService.HintSize="1022,795" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                           <ui:InterruptibleWhile.Body>
                             <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,649" sap2010:WorkflowViewState.IdRef="Sequence_29">
                               <sap:WorkflowViewStateService.ViewState>
@@ -425,13 +425,13 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </uix:NApplicationCard>
-                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: / – IPN_SFTPS_Server – WinSCP" sap:VirtualizedContainerService.HintSize="1056,4625" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" OpenMode="Never" ScopeGuid="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V2">
+                <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: / – IPN_SFTPS_Server – WinSCP" sap:VirtualizedContainerService.HintSize="1056,4585" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" OpenMode="Never" ScopeGuid="25890436-63b1-40f9-93c8-8a930f2d1d68" Version="V2">
                   <uix:NApplicationCard.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1022,4311" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1022,4271" sap2010:WorkflowViewState.IdRef="Sequence_14">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -511,7 +511,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                             </sap:WorkflowViewStateService.ViewState>
                           </uix:NCheckState>
                         </Sequence>
-                        <Sequence DisplayName="Get Summary File" sap:VirtualizedContainerService.HintSize="988,2141" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                        <Sequence DisplayName="Get Summary File" sap:VirtualizedContainerService.HintSize="988,2101" sap2010:WorkflowViewState.IdRef="Sequence_37">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -534,7 +534,7 @@ DateTime.ParseExact(in_WorkingDate, "yyyy-MM-dd", System.Globalization.CultureIn
                               <uix:TargetAnchorable CVScreenId="203e83f8-ef4b-4664-ac94-07aaae0d43dd" DesignTimeRectangle="524, 42, 108, 25" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;wnd aaname='Start' cls='TButton' title='&amp;amp;Start' /&gt;" Guid="39407a98-152d-40ac-ab5b-15dd52d6b817" InformativeScreenshot="12e0d7f0ae12a1f6a7d82824d9f62e36.png" ScopeSelectorArgument="&lt;wnd app='winscp.exe' cls='TFileFindDialog' title='Find – IPN_SFTPS_Server' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
                             </uix:NClick.Target>
                           </uix:NClick>
-                          <uix:NCheckState DisplayName="Check App State 'Transaction-20250126A.t…'" sap:VirtualizedContainerService.HintSize="954,1154" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Timeout="2" Version="V4">
+                          <uix:NCheckState DisplayName="Check App State 'Transaction-20250126A.t…'" sap:VirtualizedContainerService.HintSize="954,1114" sap2010:WorkflowViewState.IdRef="NCheckState_11" ScopeIdentifier="25890436-63b1-40f9-93c8-8a930f2d1d68" Timeout="2" Version="V4">
                             <uix:NCheckState.IfExists>
                               <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,872" sap2010:WorkflowViewState.IdRef="Sequence_38">
                                 <sap:WorkflowViewStateService.ViewState>

@@ -41,6 +41,7 @@
       <x:String>UiPath.Platform.ObjectLibrary</x:String>
       <x:String>UiPath.Platform.SyncObjects</x:String>
       <x:String>System.ComponentModel</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -111,6 +112,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <StateMachine InitialState="{x:Reference __ReferenceID0}" sap2010:Annotation.AnnotationText="" DisplayName="IPN Settlement" sap:VirtualizedContainerService.HintSize="1160,678.04" sap2010:WorkflowViewState.IdRef="StateMachine_1">
@@ -276,13 +278,14 @@
           </sap:WorkflowViewStateService.ViewState>
           <Transition.Condition>[SystemError IS Nothing]</Transition.Condition>
           <Transition.To>
-            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Containing Business Process.&#xA;&#xA;Application Exceptions will trigger a retry of the entire process up to the MaxRetryNumber defined in the Config file.&#xA;&#xA;Business Rule Exceptions must be logged manually and are not handled by this framework." DisplayName="Process State" sap:VirtualizedContainerService.HintSize="255,60" sap2010:WorkflowViewState.IdRef="State_2">
+            <State x:Name="__ReferenceID2" sap2010:Annotation.AnnotationText="Containing Business Process.&#xA;&#xA;Application Exceptions will trigger a retry of the entire process up to the MaxRetryNumber defined in the Config file.&#xA;&#xA;Business Rule Exceptions must be logged manually and are not handled by this framework." DisplayName="Process State" sap:VirtualizedContainerService.HintSize="484,788" sap2010:WorkflowViewState.IdRef="State_2">
               <State.Entry>
                 <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,373" sap2010:WorkflowViewState.IdRef="TryCatch_4">
                   <TryCatch.Try>
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process - Invoke Workflow File (Process.xaml)" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Process.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InOutArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_WorkingDay">[DateTime.Now.AddDays(0).ToString("yyyy-MM-dd")]</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </TryCatch.Try>
@@ -339,7 +342,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <Transition.To>
-                    <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Process ends here; Close Applications" DisplayName="End Process State" sap:VirtualizedContainerService.HintSize="692,1589" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                    <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="Process ends here; Close Applications" DisplayName="End Process State" sap:VirtualizedContainerService.HintSize="179,60" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                       <State.Entry>
                         <TryCatch DisplayName="Try Close All Applications" sap:VirtualizedContainerService.HintSize="646,1475" sap2010:WorkflowViewState.IdRef="TryCatch_6">
                           <TryCatch.Variables>

@@ -1,7 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Reporter" this:Reporter.in_DBConnectionString="Data Source=EGLAESSAM;Integrated Security=True;Encrypt=False" this:Reporter.in_ReportDate="2024-11-11" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Reporter" this:Reporter.in_DBConnectionString="Data Source=EGLAESSAM;Integrated Security=True;Encrypt=False" this:Reporter.in_ReportDate="2025-03-03" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_DBConnectionString" Type="InArgument(x:String)" />
     <x:Property Name="in_ReportDate" Type="InArgument(x:String)" />
+    <x:Property Name="in_EmailReceiver" Type="InArgument(x:String)" />
+    <x:Property Name="in_EmailCCReceiver" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -46,6 +48,7 @@
       <x:String>UiPath.Mail.Outlook.Activities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -109,25 +112,26 @@
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Reporter" sap:VirtualizedContainerService.HintSize="1160,678.04" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Reporter" sap:VirtualizedContainerService.HintSize="1143,3311" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_SettlementResults" />
       <Variable x:TypeArguments="x:String" Name="str_HtmlMailTemp" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_RowTransactionData" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_UnderSettlementrecords" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_RecentSettlementResults" />
+      <Variable x:TypeArguments="x:String" Name="str_UnderSettRecTemp" />
+      <Variable x:TypeArguments="x:String" Name="str_HtmlUnderSettlementRecords" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Start Reporter Jop &quot;]" />
-    <Sequence DisplayName="Get Data From DB" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_2">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="sd:DataTable" Name="dt_RecentSettlementResults" />
-        <Variable x:TypeArguments="sd:DataTable" Name="dt_RowTransactionData" />
-      </Sequence.Variables>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="570,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Start Reporter Jop &quot;]" />
+    <Sequence DisplayName="Get Data From DB" sap:VirtualizedContainerService.HintSize="570,667" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -141,13 +145,18 @@
           <scg:Dictionary x:TypeArguments="x:String, Argument" />
         </ui:ExecuteQuery.Parameters>
       </ui:ExecuteQuery>
-      <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_RecentSettlementResults]" DisplayName="Get Recent Transactions-Summary Data" sap:VirtualizedContainerService.HintSize="416,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" ProviderName="Microsoft.Data.SqlClient" Sql="SELECT TOP 100 &#xA;    r.*, &#xA;    s.TotalCredit AS DS_TotalCredit,&#xA;    s.TotalDebit AS DS_TotalDebit,&#xA;    s.NetPositions AS DS_NetPositions&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_SettlementResults] r&#xA;LEFT JOIN [UiPath Processes Data].[dbo].[IPNSettlement_DaysSummary] s&#xA;    ON r.[Date] = s.[Date]&#xA;ORDER BY r.[Date] DESC;&#xA;">
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_RecentSettlementResults]" DisplayName="Get Recent Transactions-Summary Data" sap:VirtualizedContainerService.HintSize="416,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" ProviderName="Microsoft.Data.SqlClient" Sql="SELECT TOP 100 &#xA;    r.*, &#xA;    s.TotalCredit AS DS_TotalCredit,&#xA;    s.TotalDebit AS DS_TotalDebit,&#xA;    s.NetPositions AS DS_NetPositions&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_SettlementResults] r&#xA;LEFT JOIN [UiPath Processes Data].[dbo].[IPNSettlement_DaysSummary] s&#xA;    ON r.[Date] = s.[Date]&#xA;ORDER BY r.[Date] DESC;&#xA;">
+        <ui:ExecuteQuery.Parameters>
+          <scg:Dictionary x:TypeArguments="x:String, Argument" />
+        </ui:ExecuteQuery.Parameters>
+      </ui:ExecuteQuery>
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_UnderSettlementrecords]" DisplayName="Get UnderSettlement records" sap:VirtualizedContainerService.HintSize="416,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" ProviderName="Microsoft.Data.SqlClient" Sql="SELECT &#xA;    Id,&#xA;    FORMAT([Date], 'yyyy-MM-dd') AS [Date],&#xA;    UnderSettlementState,&#xA;    FORMAT(UndersettlementCalculationDate, 'yyyy-MM-dd') AS UndersettlementCalculationDate,&#xA;    PayeeBankTrxCount,&#xA;    PayeeBankTrxAmount,&#xA;    PayerBankTrxCount,&#xA;    PayerBankTrxAmount,&#xA;    CAST(PayerBankTrxAmount AS DECIMAL(18,2)) - CAST(PayeeBankTrxAmount AS DECIMAL(18,2)) AS NetAmount&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_UnderSettlement] &#xA;WHERE CAST(UndersettlementCalculationDate AS DATE) = CAST(GETDATE() AS DATE);&#xA;">
         <ui:ExecuteQuery.Parameters>
           <scg:Dictionary x:TypeArguments="x:String, Argument" />
         </ui:ExecuteQuery.Parameters>
       </ui:ExecuteQuery>
     </Sequence>
-    <Sequence DisplayName="Excel Maker" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Excel Maker" sap:VirtualizedContainerService.HintSize="570,57" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -155,15 +164,131 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Sequence>
-    <Sequence DisplayName="Mail Maker" sap:VirtualizedContainerService.HintSize="450,57" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Mail Maker" sap:VirtualizedContainerService.HintSize="570,2133" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ReadTextFile File="{x:Null}" Content="[str_HtmlMailTemp]" DisplayName="Read Text File" FileName="HTML Templates\Settlement_Report.html" sap:VirtualizedContainerService.HintSize="479,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
-      <ui:MultipleAssign DisplayName="Update Counters" sap:VirtualizedContainerService.HintSize="479,179" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+      <Sequence DisplayName="Prepare UnderSettlement Part" sap:VirtualizedContainerService.HintSize="536,674" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Assign sap:VirtualizedContainerService.HintSize="502,115" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[str_UnderSettRecTemp]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String" xml:space="preserve">&lt;tbody&gt;
+                            &lt;tr&gt;
+                              &lt;td
+                                style='
+                                  padding: 12px 15px;
+                                  border-bottom: 1px solid #e0e0e0;
+                                '
+                              &gt;
+                                {{Date}}
+                              &lt;/td&gt;
+                              &lt;td
+                                style='
+                                  padding: 12px 15px;
+                                  border-bottom: 1px solid #e0e0e0;
+                                '
+                              &gt;
+                                {{UnderSettlementCalculationDate}}
+                              &lt;/td&gt;
+                              &lt;td
+                                style='
+                                  padding: 12px 15px;
+                                  border-bottom: 1px solid #e0e0e0;
+                                '
+                              &gt;
+                                {{PayeeTrxCount}}
+                              &lt;/td&gt;
+                              &lt;td
+                                style='
+                                  padding: 12px 15px;
+                                  border-bottom: 1px solid #e0e0e0;
+                                '
+                              &gt;
+                                {{PayeeTrxAmount}}
+                              &lt;/td&gt;
+                              &lt;td
+                                style='
+                                  padding: 12px 15px;
+                                  border-bottom: 1px solid #e0e0e0;
+                                '
+                              &gt;
+                                {{PayerTrxCount}}
+                              &lt;/td&gt;
+                              &lt;td
+                                style='
+                                  padding: 12px 15px;
+                                  border-bottom: 1px solid #e0e0e0;
+                                '
+                              &gt;
+                                {{PayerTrxAmount}}
+                              &lt;/td&gt;
+                              &lt;td
+                                style='
+                                  padding: 12px 15px;
+                                  border-bottom: 1px solid #e0e0e0;
+                                '
+                              &gt;
+                                {{NetAmount}}
+                              &lt;/td&gt;
+                            &lt;/tr&gt;
+                          &lt;/tbody&gt;</InArgument>
+          </Assign.Value>
+        </Assign>
+        <Assign sap:VirtualizedContainerService.HintSize="502,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[str_HtmlUnderSettlementRecords]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">
+              <Literal x:TypeArguments="x:String" Value="" />
+            </InArgument>
+          </Assign.Value>
+        </Assign>
+        <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_UnderSettlementrecords]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="502,353" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+          <ui:ForEachRow.Body>
+            <ActivityAction x:TypeArguments="sd:DataRow">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,166" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign sap:VirtualizedContainerService.HintSize="434,106" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[str_HtmlUnderSettlementRecords]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HtmlUnderSettlementRecords+
+str_UnderSettRecTemp.
+Replace("{{Date}}",CurrentRow("Date").ToString).
+Replace("{{UnderSettlementCalculationDate}}",CurrentRow("UnderSettlementCalculationDate").ToString).
+Replace("{{PayeeTrxCount}}",CurrentRow("PayeeBankTrxCount").ToString).
+Replace("{{PayeeTrxAmount}}",CurrentRow("PayeeBankTrxAmount").ToString).
+Replace("{{PayerTrxCount}}",CurrentRow("PayerBankTrxCount").ToString).
+Replace("{{PayerTrxAmount}}",CurrentRow("PayerBankTrxAmount").ToString).
+Replace("{{NetAmount}}",CurrentRow("NetAmount").ToString)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEachRow.Body>
+        </ui:ForEachRow>
+      </Sequence>
+      <ui:ReadTextFile File="{x:Null}" Content="[str_HtmlMailTemp]" DisplayName="Read Text File" FileName="HTML Templates\Settlement_Report.html" sap:VirtualizedContainerService.HintSize="536,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+      <ui:MultipleAssign DisplayName="Update Counters" sap:VirtualizedContainerService.HintSize="536,179" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -185,7 +310,7 @@
           </scg:List>
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
-      <ui:MultipleAssign DisplayName="Update Counters" sap:VirtualizedContainerService.HintSize="479,365" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
+      <ui:MultipleAssign DisplayName="Update Counters" sap:VirtualizedContainerService.HintSize="536,365" sap2010:WorkflowViewState.IdRef="MultipleAssign_5">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_21">
@@ -255,7 +380,7 @@
           </scg:List>
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
-      <ui:MultipleAssign DisplayName="Update Detailed Breakdown" sap:VirtualizedContainerService.HintSize="479,365" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+      <ui:MultipleAssign DisplayName="Update Detailed Breakdown" sap:VirtualizedContainerService.HintSize="536,365" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
@@ -325,7 +450,7 @@
           </scg:List>
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
-      <ui:MultipleAssign DisplayName="Update Summary Details" sap:VirtualizedContainerService.HintSize="479,232" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+      <ui:MultipleAssign DisplayName="Update Summary Details" sap:VirtualizedContainerService.HintSize="536,241" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
         <ui:MultipleAssign.AssignOperations>
           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_17">
@@ -363,15 +488,23 @@
           </scg:List>
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
+      <Assign sap:VirtualizedContainerService.HintSize="536,105" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("&lt;!-- Under Settlement Rows --&gt;",str_HtmlUnderSettlementRecords)]</InArgument>
+        </Assign.Value>
+      </Assign>
     </Sequence>
-    <Sequence DisplayName="Mail Sender" sap:VirtualizedContainerService.HintSize="450,258" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="Mail Sender" sap:VirtualizedContainerService.HintSize="570,258" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Body="[str_HtmlMailTemp]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="Test" TimeoutMS="100000" To="ahmed.essam@bmbgroup.com">
+      <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" ContinueOnError="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" Body="[str_HtmlMailTemp]" Cc="[in_EmailCCReceiver]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" Importance="Normal" IsBodyHtml="True" IsDraft="False" Sensitivity="Normal" Subject="Daily Settlement Report" TimeoutMS="100000" To="[in_EmailReceiver]">
         <ui:SendOutlookMail.Files>
           <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
         </ui:SendOutlookMail.Files>

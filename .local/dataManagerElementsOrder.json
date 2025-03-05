@@ -14,7 +14,6 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "glb_str_CommunicationMatrixPath&e6374c77-4003-47c2-abe5-ea0aa3c7cdf0",
         "SystemError&StateMachine_1",
         "BusinessRuleException&StateMachine_1",
         "Config&StateMachine_1",
@@ -23,7 +22,7 @@
         "str_HtmlMailBody&Sequence_10",
         "str_ScreenshotsPath&Sequence_10",
         "BrowserStillOpen&TryCatch_3",
-        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b"
+        "glb_str_CommunicationMatrixPath&975351a9-01d1-422e-b408-c4f60a5e6672"
       ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
@@ -43,7 +42,7 @@
       "Path": "Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b"
+        "glb_str_CommunicationMatrixPath&975351a9-01d1-422e-b408-c4f60a5e6672"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_Config"
@@ -131,6 +130,7 @@
       "Path": "Bots/Get IPN File(UI).xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&975351a9-01d1-422e-b408-c4f60a5e6672",
         "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b",
         "str_SFTPSummaryFilePath&Sequence_5",
         "str_SFTPFolderPath&Sequence_5",
@@ -181,7 +181,7 @@
       "Path": "Bots/SettlementEngine.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "glb_str_CommunicationMatrixPath&d328ca74-cfd4-4009-92d8-042334059b6a",
+        "glb_str_CommunicationMatrixPath&56b7b603-952c-45b4-937c-b9c83cc93d28",
         "dt_SettlementData&Sequence_1",
         "DBConnection&Sequence_1"
       ],
@@ -196,8 +196,7 @@
       "Path": "Bots/Load-Parsing Settlement Trx.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "glb_str_CommunicationMatrixPath&e6374c77-4003-47c2-abe5-ea0aa3c7cdf0",
-        "glb_str_CommunicationMatrixPath&f4622b84-18d4-41e9-99ff-6e9646309e0b",
+        "glb_str_CommunicationMatrixPath&975351a9-01d1-422e-b408-c4f60a5e6672",
         "str_CurrentFileFullText&Sequence_2",
         "strArr_Lines&Sequence_2",
         "CurrentTrx&Sequence_3",
@@ -216,8 +215,8 @@
       "Path": "Bots/MatchingTransactionsWithSummary.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "DBConnection&Sequence_4",
-        "glb_str_CommunicationMatrixPath&b6b64598-9c8e-4b42-a3f7-35c599aec332"
+        "glb_str_CommunicationMatrixPath&56b7b603-952c-45b4-937c-b9c83cc93d28",
+        "DBConnection&Sequence_4"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_DBConnectionString",
@@ -230,15 +229,32 @@
       "Path": "Bots/Reporter.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&56b7b603-952c-45b4-937c-b9c83cc93d28",
         "dt_RowTransactionData&Sequence_2",
         "dt_RecentSettlementResults&Sequence_2",
         "str_HtmlMailTemp&Sequence_1",
-        "dt_SettlementResults&Sequence_1",
-        "glb_str_CommunicationMatrixPath&d328ca74-cfd4-4009-92d8-042334059b6a"
+        "dt_SettlementResults&Sequence_1"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_ReportDate",
         "in_DBConnectionString"
+      ],
+      "ConstantsSectionElementsOrder": [],
+      "AddedNamespaces": null
+    },
+    {
+      "Path": "Bots/UnderSettlementCalculation.xaml",
+      "SortBy": 0,
+      "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&975351a9-01d1-422e-b408-c4f60a5e6672",
+        "[CInt]&Sequence_8",
+        "dt_UnderSettlementCalculations&Sequence_6",
+        "dt_CoreTrxCount&Sequence_5",
+        "dt_NotCalcultedRecords&Sequence_1"
+      ],
+      "ArgumentsSectionElementsOrder": [
+        "in_DBConnectionString",
+        "in_SettlementDate"
       ],
       "ConstantsSectionElementsOrder": [],
       "AddedNamespaces": null

@@ -114,14 +114,14 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Load_Parsing_Sttlement_Trx" sap:VirtualizedContainerService.HintSize="1143,2486" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Load_Parsing_Sttlement_Trx" sap:VirtualizedContainerService.HintSize="1143,2577" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="660,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Start Parsing-Loading Settlement Trx&quot;]" />
-    <ui:ForEachFileX DisplayName="For Each File in Folder-Loop on files in unprocessed folder" Filter="*.txt" Folder="[in_UnprocessedFolder]" sap:VirtualizedContainerService.HintSize="660,2290" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="CreationDateOldFirst" SkipFolderWithoutPermission="False">
+    <ui:ForEachFileX DisplayName="For Each File in Folder-Loop on files in unprocessed folder" Filter="*.txt" Folder="[in_UnprocessedFolder]" sap:VirtualizedContainerService.HintSize="660,2381" sap2010:WorkflowViewState.IdRef="ForEachFileX_1" IncludeSubDirectories="False" OrderBy="CreationDateOldFirst" SkipFolderWithoutPermission="False">
       <ui:ForEachFileX.Body>
         <ActivityAction x:TypeArguments="si:FileInfo, x:Int32">
           <ActivityAction.Argument1>
@@ -130,7 +130,7 @@
           <ActivityAction.Argument2>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
           </ActivityAction.Argument2>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="626,2009" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="626,2100" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="str_CurrentFileFullText" />
               <Variable x:TypeArguments="s:String[]" Name="strArr_Lines" />
@@ -140,9 +140,9 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="592,1949" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="592,2040" sap2010:WorkflowViewState.IdRef="TryCatch_1">
               <TryCatch.Try>
-                <Sequence sap:VirtualizedContainerService.HintSize="554,1698" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence sap:VirtualizedContainerService.HintSize="552,1789" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:Int32" Name="CurrentTrx" />
                     <Variable x:TypeArguments="ui:DatabaseConnection" Name="DBConnection" />
@@ -152,9 +152,9 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Process: &quot;+ CurrentFile.Name]" />
-                  <ui:ReadTextFile File="{x:Null}" Content="[str_CurrentFileFullText]" DisplayName="Read Trx Files as string" FileName="[CurrentFile.FullName]" sap:VirtualizedContainerService.HintSize="520,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
-                  <Assign DisplayName="split file into lines in string array" sap:VirtualizedContainerService.HintSize="520,114" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Process: &quot;+ CurrentFile.Name]" />
+                  <ui:ReadTextFile File="{x:Null}" Content="[str_CurrentFileFullText]" DisplayName="Read Trx Files as string" FileName="[CurrentFile.FullName]" sap:VirtualizedContainerService.HintSize="518,112" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+                  <Assign DisplayName="split file into lines in string array" sap:VirtualizedContainerService.HintSize="518,114" sap2010:WorkflowViewState.IdRef="Assign_1">
                     <Assign.To>
                       <OutArgument x:TypeArguments="s:String[]">[strArr_Lines]</OutArgument>
                     </Assign.To>
@@ -162,59 +162,47 @@
                       <InArgument x:TypeArguments="s:String[]">[str_CurrentFileFullText.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="520,92" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="[in_DBConnectionString]" DatabaseConnection="[DBConnection]" />
-                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[CurrentTrx]" DisplayName="For Each CurrentLine-loop on lines " sap:VirtualizedContainerService.HintSize="520,735" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[strArr_Lines]">
+                  <ui:DatabaseConnect DisplayName="Connect to Database" sap:VirtualizedContainerService.HintSize="518,92" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="Microsoft.Data.SqlClient" ConnectionString="[in_DBConnectionString]" DatabaseConnection="[DBConnection]" />
+                  <ui:ForEach x:TypeArguments="x:String" CurrentIndex="[CurrentTrx]" DisplayName="For Each CurrentLine-loop on lines " sap:VirtualizedContainerService.HintSize="518,826" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[strArr_Lines]">
                     <ui:ForEach.Body>
                       <ActivityAction x:TypeArguments="x:String">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="x:String" Name="CurrentLine" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,589" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="484,680" sap2010:WorkflowViewState.IdRef="Sequence_4">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,219" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                            <ui:CommentOut.Body>
-                              <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,108" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <If Condition="[CurrentTrx Mod 250 = 0]" sap:VirtualizedContainerService.HintSize="450,483" sap2010:WorkflowViewState.IdRef="If_2">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,224" sap2010:WorkflowViewState.IdRef="Sequence_8">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <If Condition="[CurrentTrx Mod 250 = 0]" sap:VirtualizedContainerService.HintSize="382,48" sap2010:WorkflowViewState.IdRef="If_1">
-                                  <sap:WorkflowViewStateService.ViewState>
-                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                    </scg:Dictionary>
-                                  </sap:WorkflowViewStateService.ViewState>
-                                  <If.Then>
-                                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,224" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[CurrentTrx.ToString + &quot;IPN Transaction Loaded&quot;]" />
-                                    </Sequence>
-                                  </If.Then>
-                                  <If.Else>
-                                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                    </Sequence>
-                                  </If.Else>
-                                </If>
+                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[CurrentTrx.ToString + &quot; IPN Settlement Transaction Loaded&quot;]" />
                               </Sequence>
-                            </ui:CommentOut.Body>
-                          </ui:CommentOut>
-                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,173" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;IPN &quot;+(CurrentTrx+1).ToString]" />
-                          <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Run Query- insert query into data base" ExistingDbConnection="[DBConnection]" sap:VirtualizedContainerService.HintSize="452,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;INSERT INTO [UiPath Processes Data].[dbo].[IPNSettlement_Transactions]&#xA;    (TransactionId, TransactionType, SwitchDate, TransactionTimeStamp, BankRole,&#xA;     PayerPsp, PayerPspBank, PayerBank, PayeePsp, PayeePspBank, PayeeBank,&#xA;     TransactionAmount, TransactionAmountAction, TransactionAmountCurrency,&#xA;     PayerPspFeesAmount, PayerPspFeesAmountAction, PayerPspFeesAmountCurrency,&#xA;     PayerPspBearFeesAmount, PayerPspBearFeesAmountAction, PayerPspBearFeesAmountCurrency,&#xA;     InterchangeAmount, InterchangeAmountAction, InterchangeAmountCurrency,&#xA;     IpnProcessingFeesAmount, IpnProcessingFeesAmountAction, IpnProcessingFeesAmountCurrency,&#xA;     PayerMobileNumber, PayerIpa, PayerName, PayerAccountUniqueIdentifier,&#xA;     AmlPayerName, AmlPayerAddress, AmlPayerIdentificationType, AmlPayerIdentificationNumber,&#xA;     PayeeMobileNumber, PayeeIpa, PayeeName, PayeeAccountUniqueIdentifier,&#xA;     AmlPayeeName, AmlPayeeAddress, AmlPayeeIdentificationType, AmlPayeeIdentificationNumber,&#xA;     TerminalLocation, TerminalLongitude, TerminalLatitude, TransactionRemark,&#xA;     CustomerReference, Result, ResponseCode, ResponseDescription, SourceFileName)&#xA;VALUES (&#xA;    N'&quot; &amp; CurrentLine.Substring(0, 36).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(36, 32).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(68, 10).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(78, 23).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(101, 14).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(115, 20).Trim() &amp; &quot;',  -- PayerPsp&#xA;    N'&quot; &amp; CurrentLine.Substring(135, 20).Trim() &amp; &quot;',  -- PayerPspBank&#xA;    N'&quot; &amp; CurrentLine.Substring(155, 20).Trim() &amp; &quot;',  -- PayerBank&#xA;    N'&quot; &amp; CurrentLine.Substring(175, 20).Trim() &amp; &quot;',  -- PayeePsp&#xA;    N'&quot; &amp; CurrentLine.Substring(195, 20).Trim() &amp; &quot;',  -- PayeePspBank&#xA;    N'&quot; &amp; CurrentLine.Substring(215, 20).Trim() &amp; &quot;',  -- PayeeBank&#xA;    N'&quot; &amp; CurrentLine.Substring(235, 18).Trim() &amp; &quot;',  -- TransactionAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(253, 6).Trim() &amp; &quot;',   -- TransactionAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(259, 3).Trim() &amp; &quot;',   -- TransactionAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(262, 18).Trim() &amp; &quot;',  -- PayerPspFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(280, 6).Trim() &amp; &quot;',   -- PayerPspFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(286, 3).Trim() &amp; &quot;',   -- PayerPspFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(289, 18).Trim() &amp; &quot;',  -- PayerPspBearFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(307, 6).Trim() &amp; &quot;',   -- PayerPspBearFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(313, 3).Trim() &amp; &quot;',   -- PayerPspBearFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(316, 18).Trim() &amp; &quot;',  -- InterchangeAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(334, 6).Trim() &amp; &quot;',   -- InterchangeAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(340, 3).Trim() &amp; &quot;',   -- InterchangeAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(343, 18).Trim() &amp; &quot;',  -- IpnProcessingFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(361, 6).Trim() &amp; &quot;',   -- IpnProcessingFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(367, 3).Trim() &amp; &quot;',   -- IpnProcessingFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(370, 14).Trim() &amp; &quot;',  -- PayerMobileNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(384, 100).Trim() &amp; &quot;', -- PayerIpa&#xA;    N'&quot; &amp; CurrentLine.Substring(484, 100).Trim() &amp; &quot;', -- PayerName&#xA;    N'&quot; &amp; CurrentLine.Substring(584, 36).Trim() &amp; &quot;',  -- PayerAccountUniqueIdentifier&#xA;    N'&quot; &amp; CurrentLine.Substring(620, 100).Trim() &amp; &quot;', -- AmlPayerName&#xA;    N'&quot; &amp; CurrentLine.Substring(720, 100).Trim() &amp; &quot;', -- AmlPayerAddress&#xA;    N'&quot; &amp; CurrentLine.Substring(820, 8).Trim() &amp; &quot;',   -- AmlPayerIdentificationType&#xA;    N'&quot; &amp; CurrentLine.Substring(828, 30).Trim() &amp; &quot;',  -- AmlPayerIdentificationNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(858, 14).Trim() &amp; &quot;',  -- PayeeMobileNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(872, 100).Trim() &amp; &quot;', -- PayeeIpa&#xA;    N'&quot; &amp; CurrentLine.Substring(972, 100).Trim() &amp; &quot;', -- PayeeName&#xA;    N'&quot; &amp; CurrentLine.Substring(1072, 36).Trim() &amp; &quot;', -- PayeeAccountUniqueIdentifier&#xA;    N'&quot; &amp; CurrentLine.Substring(1108, 100).Trim() &amp; &quot;', -- AmlPayeeName&#xA;    N'&quot; &amp; CurrentLine.Substring(1208, 100).Trim() &amp; &quot;', -- AmlPayeeAddress&#xA;    N'&quot; &amp; CurrentLine.Substring(1308, 8).Trim() &amp; &quot;',   -- AmlPayeeIdentificationType&#xA;    N'&quot; &amp; CurrentLine.Substring(1316, 30).Trim() &amp; &quot;',  -- AmlPayeeIdentificationNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(1346, 40).Trim() &amp; &quot;',  -- TerminalLocation&#xA;    N'&quot; &amp; CurrentLine.Substring(1386, 15).Trim() &amp; &quot;',  -- TerminalLongitude&#xA;    N'&quot; &amp; CurrentLine.Substring(1401, 15).Trim() &amp; &quot;',  -- TerminalLatitude&#xA;    N'&quot; &amp; CurrentLine.Substring(1416, 100).Trim() &amp; &quot;', -- TransactionRemark&#xA;    N'&quot; &amp; CurrentLine.Substring(1516, 100).Trim() &amp; &quot;', -- CustomerReference&#xA;    N'&quot; &amp; CurrentLine.Substring(1616, 7).Trim() &amp; &quot;',   -- Result&#xA;    N'&quot; &amp; CurrentLine.Substring(1623, 5).Trim() &amp; &quot;',   -- ResponseCode&#xA;    N'&quot; &amp; CurrentLine.Substring(1628, 100).Trim() &amp; &quot;', -- ResponseDescription&#xA;    N'&quot; &amp; CurrentFile.Name &amp; &quot;'&#xA;);&quot;]">
+                            </If.Then>
+                            <If.Else>
+                              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </Sequence>
+                            </If.Else>
+                          </If>
+                          <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Run Query- insert query into data base" ExistingDbConnection="[DBConnection]" sap:VirtualizedContainerService.HintSize="450,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[&quot;INSERT INTO [UiPath Processes Data].[dbo].[IPNSettlement_Transactions]&#xA;    (TransactionId, TransactionType, SwitchDate, TransactionTimeStamp, BankRole,&#xA;     PayerPsp, PayerPspBank, PayerBank, PayeePsp, PayeePspBank, PayeeBank,&#xA;     TransactionAmount, TransactionAmountAction, TransactionAmountCurrency,&#xA;     PayerPspFeesAmount, PayerPspFeesAmountAction, PayerPspFeesAmountCurrency,&#xA;     PayerPspBearFeesAmount, PayerPspBearFeesAmountAction, PayerPspBearFeesAmountCurrency,&#xA;     InterchangeAmount, InterchangeAmountAction, InterchangeAmountCurrency,&#xA;     IpnProcessingFeesAmount, IpnProcessingFeesAmountAction, IpnProcessingFeesAmountCurrency,&#xA;     PayerMobileNumber, PayerIpa, PayerName, PayerAccountUniqueIdentifier,&#xA;     AmlPayerName, AmlPayerAddress, AmlPayerIdentificationType, AmlPayerIdentificationNumber,&#xA;     PayeeMobileNumber, PayeeIpa, PayeeName, PayeeAccountUniqueIdentifier,&#xA;     AmlPayeeName, AmlPayeeAddress, AmlPayeeIdentificationType, AmlPayeeIdentificationNumber,&#xA;     TerminalLocation, TerminalLongitude, TerminalLatitude, TransactionRemark,&#xA;     CustomerReference, Result, ResponseCode, ResponseDescription, SourceFileName)&#xA;VALUES (&#xA;    N'&quot; &amp; CurrentLine.Substring(0, 36).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(36, 32).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(68, 10).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(78, 23).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(101, 14).Trim() &amp; &quot;',&#xA;    N'&quot; &amp; CurrentLine.Substring(115, 20).Trim() &amp; &quot;',  -- PayerPsp&#xA;    N'&quot; &amp; CurrentLine.Substring(135, 20).Trim() &amp; &quot;',  -- PayerPspBank&#xA;    N'&quot; &amp; CurrentLine.Substring(155, 20).Trim() &amp; &quot;',  -- PayerBank&#xA;    N'&quot; &amp; CurrentLine.Substring(175, 20).Trim() &amp; &quot;',  -- PayeePsp&#xA;    N'&quot; &amp; CurrentLine.Substring(195, 20).Trim() &amp; &quot;',  -- PayeePspBank&#xA;    N'&quot; &amp; CurrentLine.Substring(215, 20).Trim() &amp; &quot;',  -- PayeeBank&#xA;    N'&quot; &amp; CurrentLine.Substring(235, 18).Trim() &amp; &quot;',  -- TransactionAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(253, 6).Trim() &amp; &quot;',   -- TransactionAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(259, 3).Trim() &amp; &quot;',   -- TransactionAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(262, 18).Trim() &amp; &quot;',  -- PayerPspFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(280, 6).Trim() &amp; &quot;',   -- PayerPspFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(286, 3).Trim() &amp; &quot;',   -- PayerPspFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(289, 18).Trim() &amp; &quot;',  -- PayerPspBearFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(307, 6).Trim() &amp; &quot;',   -- PayerPspBearFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(313, 3).Trim() &amp; &quot;',   -- PayerPspBearFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(316, 18).Trim() &amp; &quot;',  -- InterchangeAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(334, 6).Trim() &amp; &quot;',   -- InterchangeAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(340, 3).Trim() &amp; &quot;',   -- InterchangeAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(343, 18).Trim() &amp; &quot;',  -- IpnProcessingFeesAmount&#xA;    N'&quot; &amp; CurrentLine.Substring(361, 6).Trim() &amp; &quot;',   -- IpnProcessingFeesAmountAction&#xA;    N'&quot; &amp; CurrentLine.Substring(367, 3).Trim() &amp; &quot;',   -- IpnProcessingFeesAmountCurrency&#xA;    N'&quot; &amp; CurrentLine.Substring(370, 14).Trim() &amp; &quot;',  -- PayerMobileNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(384, 100).Trim() &amp; &quot;', -- PayerIpa&#xA;    N'&quot; &amp; CurrentLine.Substring(484, 100).Trim() &amp; &quot;', -- PayerName&#xA;    N'&quot; &amp; CurrentLine.Substring(584, 36).Trim() &amp; &quot;',  -- PayerAccountUniqueIdentifier&#xA;    N'&quot; &amp; CurrentLine.Substring(620, 100).Trim() &amp; &quot;', -- AmlPayerName&#xA;    N'&quot; &amp; CurrentLine.Substring(720, 100).Trim() &amp; &quot;', -- AmlPayerAddress&#xA;    N'&quot; &amp; CurrentLine.Substring(820, 8).Trim() &amp; &quot;',   -- AmlPayerIdentificationType&#xA;    N'&quot; &amp; CurrentLine.Substring(828, 30).Trim() &amp; &quot;',  -- AmlPayerIdentificationNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(858, 14).Trim() &amp; &quot;',  -- PayeeMobileNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(872, 100).Trim() &amp; &quot;', -- PayeeIpa&#xA;    N'&quot; &amp; CurrentLine.Substring(972, 100).Trim() &amp; &quot;', -- PayeeName&#xA;    N'&quot; &amp; CurrentLine.Substring(1072, 36).Trim() &amp; &quot;', -- PayeeAccountUniqueIdentifier&#xA;    N'&quot; &amp; CurrentLine.Substring(1108, 100).Trim() &amp; &quot;', -- AmlPayeeName&#xA;    N'&quot; &amp; CurrentLine.Substring(1208, 100).Trim() &amp; &quot;', -- AmlPayeeAddress&#xA;    N'&quot; &amp; CurrentLine.Substring(1308, 8).Trim() &amp; &quot;',   -- AmlPayeeIdentificationType&#xA;    N'&quot; &amp; CurrentLine.Substring(1316, 30).Trim() &amp; &quot;',  -- AmlPayeeIdentificationNumber&#xA;    N'&quot; &amp; CurrentLine.Substring(1346, 40).Trim() &amp; &quot;',  -- TerminalLocation&#xA;    N'&quot; &amp; CurrentLine.Substring(1386, 15).Trim() &amp; &quot;',  -- TerminalLongitude&#xA;    N'&quot; &amp; CurrentLine.Substring(1401, 15).Trim() &amp; &quot;',  -- TerminalLatitude&#xA;    N'&quot; &amp; CurrentLine.Substring(1416, 100).Trim() &amp; &quot;', -- TransactionRemark&#xA;    N'&quot; &amp; CurrentLine.Substring(1516, 100).Trim() &amp; &quot;', -- CustomerReference&#xA;    N'&quot; &amp; CurrentLine.Substring(1616, 7).Trim() &amp; &quot;',   -- Result&#xA;    N'&quot; &amp; CurrentLine.Substring(1623, 5).Trim() &amp; &quot;',   -- ResponseCode&#xA;    N'&quot; &amp; CurrentLine.Substring(1628, 100).Trim() &amp; &quot;', -- ResponseDescription&#xA;    N'&quot; &amp; CurrentFile.Name &amp; &quot;'&#xA;);&quot;]">
                             <ui:ExecuteQuery.Parameters>
                               <scg:Dictionary x:TypeArguments="x:String, Argument" />
                             </ui:ExecuteQuery.Parameters>
@@ -223,9 +211,9 @@
                       </ActivityAction>
                     </ui:ForEach.Body>
                   </ui:ForEach>
-                  <ui:DatabaseDisconnect DatabaseConnection="[DBConnection]" DisplayName="Disconnect from Database" sap:VirtualizedContainerService.HintSize="520,57" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="520,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;All IPN Transactions Loaded&quot;]" />
-                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_ProcessedFolder]" DisplayName="Move File-into processed folder" sap:VirtualizedContainerService.HintSize="520,182" sap2010:WorkflowViewState.IdRef="MoveFile_3" Overwrite="True" Path="[CurrentFile.FullName]" />
+                  <ui:DatabaseDisconnect DatabaseConnection="[DBConnection]" DisplayName="Disconnect from Database" sap:VirtualizedContainerService.HintSize="518,57" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;All IPN Transactions Loaded&quot;]" />
+                  <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[in_ProcessedFolder]" DisplayName="Move File-into processed folder" sap:VirtualizedContainerService.HintSize="518,182" sap2010:WorkflowViewState.IdRef="MoveFile_3" Overwrite="True" Path="[CurrentFile.FullName]" />
                 </Sequence>
               </TryCatch.Try>
               <TryCatch.Catches>
