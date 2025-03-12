@@ -114,7 +114,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Reporter" sap:VirtualizedContainerService.HintSize="1143,3546" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Reporter" sap:VirtualizedContainerService.HintSize="1143,3670" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_SettlementResults" />
       <Variable x:TypeArguments="x:String" Name="str_HtmlMailTemp" />
@@ -166,7 +166,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Sequence>
-    <Sequence DisplayName="Mail Maker" sap:VirtualizedContainerService.HintSize="570,2312" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Mail Maker" sap:VirtualizedContainerService.HintSize="570,2436" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -490,15 +490,15 @@ Replace("{{NetAmount}}",CurrentRow("NetAmount").ToString)]</InArgument>
           </scg:List>
         </ui:MultipleAssign.AssignOperations>
       </ui:MultipleAssign>
-      <ui:MultipleAssign DisplayName="GLs Summary Transactions" sap:VirtualizedContainerService.HintSize="536,179" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
+      <ui:MultipleAssign DisplayName="GLs Summary Transactions" sap:VirtualizedContainerService.HintSize="536,303" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
         <ui:MultipleAssign.AssignOperations>
-          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_29">
               <ui:AssignOperation.To>
                 <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{TotalGLNetAmount}}",Math.Round(Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2PPayeeTrxAmount").ToString()) - Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2PPayerTrxAmount").ToString()) - Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2MPayerTrxAmount").ToString()), 2).ToString("F2"))]</InArgument>
+                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{1stAmt}}",dt_SettlementResults.Rows(0)("NetPositionAmount").ToString)]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_30">
@@ -506,7 +506,43 @@ Replace("{{NetAmount}}",CurrentRow("NetAmount").ToString)]</InArgument>
                 <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
-                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{TotalPayerAmount}}",Math.Round((Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2PPayerTrxAmount").ToString()) + Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2MPayerTrxAmount").ToString())), 2).ToString("F2"))]</InArgument>
+                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{2ndAmt}}",dt_SettlementResults.Rows(0)("P2PPayeeTrxAmount").ToString)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_31">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String" xml:space="preserve">[str_HtmlMailTemp.Replace("{{3rdAmt}}",
+    Math.Round(
+        Convert.ToDecimal(dt_SettlementResults.Rows(0)("TotalDebitAmount").ToString()) -
+        Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2MPayeeTrxInterchangeAmount").ToString()),
+    2).ToString("F2"))]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_32">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{4thAmt}}",dt_SettlementResults.Rows(0)("P2MPayerTrxInterchangeAmount").ToString)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_33">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{5thAmt}}",dt_SettlementResults.Rows(0)("P2MPayeeTrxInterchangeAmount").ToString)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_34">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{6thAmt}}",dt_SettlementResults.Rows(0)("P2MPayeeTrxAmount").ToString)]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>
