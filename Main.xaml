@@ -285,7 +285,7 @@
                     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Process - Invoke Workflow File (Process.xaml)" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_15" UnSafe="False" WorkflowFileName="Process.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[Config]</InOutArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="in_WorkingDay">[DateTime.Now.AddDays(0).ToString("yyyy-MM-dd")]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="in_WorkingDay">2025-03-05</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </TryCatch.Try>

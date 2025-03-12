@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Reporter" this:Reporter.in_DBConnectionString="Data Source=EGLAESSAM;Integrated Security=True;Encrypt=False" this:Reporter.in_ReportDate="2025-03-03" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Reporter" this:Reporter.in_DBConnectionString="Data Source=EGLAESSAM;Integrated Security=True;Encrypt=False" this:Reporter.in_ReportDate="2025-03-05" this:Reporter.in_EmailReceiver="ahmed.essam@bmbgroup.com" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_DBConnectionString" Type="InArgument(x:String)" />
     <x:Property Name="in_ReportDate" Type="InArgument(x:String)" />
@@ -49,6 +49,7 @@
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
       <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -110,9 +111,10 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Reporter" sap:VirtualizedContainerService.HintSize="1143,3311" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Reporter" sap:VirtualizedContainerService.HintSize="1143,3546" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_SettlementResults" />
       <Variable x:TypeArguments="x:String" Name="str_HtmlMailTemp" />
@@ -150,13 +152,13 @@
           <scg:Dictionary x:TypeArguments="x:String, Argument" />
         </ui:ExecuteQuery.Parameters>
       </ui:ExecuteQuery>
-      <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_UnderSettlementrecords]" DisplayName="Get UnderSettlement records" sap:VirtualizedContainerService.HintSize="416,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" ProviderName="Microsoft.Data.SqlClient" Sql="SELECT &#xA;    Id,&#xA;    FORMAT([Date], 'yyyy-MM-dd') AS [Date],&#xA;    UnderSettlementState,&#xA;    FORMAT(UndersettlementCalculationDate, 'yyyy-MM-dd') AS UndersettlementCalculationDate,&#xA;    PayeeBankTrxCount,&#xA;    PayeeBankTrxAmount,&#xA;    PayerBankTrxCount,&#xA;    PayerBankTrxAmount,&#xA;    CAST(PayerBankTrxAmount AS DECIMAL(18,2)) - CAST(PayeeBankTrxAmount AS DECIMAL(18,2)) AS NetAmount&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_UnderSettlement] &#xA;WHERE CAST(UndersettlementCalculationDate AS DATE) = CAST(GETDATE() AS DATE);&#xA;">
+      <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_UnderSettlementrecords]" DisplayName="Get UnderSettlement records" sap:VirtualizedContainerService.HintSize="416,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_5" ProviderName="Microsoft.Data.SqlClient" Sql="SELECT &#xD;&#xA;    Id,&#xD;&#xA;    FORMAT([Date], 'yyyy-MM-dd') AS [Date],&#xD;&#xA;    UnderSettlementState,&#xD;&#xA;    FORMAT(UndersettlementCalculationDate, 'yyyy-MM-dd') AS UndersettlementCalculationDate,&#xD;&#xA;    PayeeBankTrxCount,&#xD;&#xA;    PayeeBankTrxAmount,&#xD;&#xA;    PayerBankTrxCount,&#xD;&#xA;    PayerBankTrxAmount,&#xD;&#xA;    CAST(PayeeBankTrxAmount AS DECIMAL(18,2)) - CAST(PayerBankTrxAmount AS DECIMAL(18,2))AS NetAmount&#xD;&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_UnderSettlement] &#xD;&#xA;WHERE CAST(UndersettlementCalculationDate AS DATE) = CAST(GETDATE() AS DATE);&#xD;&#xA;">
         <ui:ExecuteQuery.Parameters>
           <scg:Dictionary x:TypeArguments="x:String, Argument" />
         </ui:ExecuteQuery.Parameters>
       </ui:ExecuteQuery>
     </Sequence>
-    <Sequence DisplayName="Excel Maker" sap:VirtualizedContainerService.HintSize="570,57" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Excel Maker" sap:VirtualizedContainerService.HintSize="570,113" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -164,7 +166,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Sequence>
-    <Sequence DisplayName="Mail Maker" sap:VirtualizedContainerService.HintSize="570,2133" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Mail Maker" sap:VirtualizedContainerService.HintSize="570,2312" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -483,6 +485,28 @@ Replace("{{NetAmount}}",CurrentRow("NetAmount").ToString)]</InArgument>
               </ui:AssignOperation.To>
               <ui:AssignOperation.Value>
                 <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{IsMatched}}",dt_SettlementResults.Rows(0)("IsMatchedWithSummary").ToString)]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+          </scg:List>
+        </ui:MultipleAssign.AssignOperations>
+      </ui:MultipleAssign>
+      <ui:MultipleAssign DisplayName="GLs Summary Transactions" sap:VirtualizedContainerService.HintSize="536,179" sap2010:WorkflowViewState.IdRef="MultipleAssign_6">
+        <ui:MultipleAssign.AssignOperations>
+          <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_29">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{TotalGLNetAmount}}",Math.Round(Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2PPayeeTrxAmount").ToString()) - Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2PPayerTrxAmount").ToString()) - Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2MPayerTrxAmount").ToString()), 2).ToString("F2"))]</InArgument>
+              </ui:AssignOperation.Value>
+            </ui:AssignOperation>
+            <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_30">
+              <ui:AssignOperation.To>
+                <OutArgument x:TypeArguments="x:String">[str_HtmlMailTemp]</OutArgument>
+              </ui:AssignOperation.To>
+              <ui:AssignOperation.Value>
+                <InArgument x:TypeArguments="x:String">[str_HtmlMailTemp.Replace("{{TotalPayerAmount}}",Math.Round((Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2PPayerTrxAmount").ToString()) + Convert.ToDecimal(dt_SettlementResults.Rows(0)("P2MPayerTrxAmount").ToString())), 2).ToString("F2"))]</InArgument>
               </ui:AssignOperation.Value>
             </ui:AssignOperation>
           </scg:List>

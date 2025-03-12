@@ -104,7 +104,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="UnderSettlementCalculation" sap:VirtualizedContainerService.HintSize="1143,2852" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="UnderSettlementCalculation" sap:VirtualizedContainerService.HintSize="1143,3851" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_NotCalcultedRecords" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_SettlementTrxcount" />
@@ -115,7 +115,8 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Make Under Settlement Record" sap:VirtualizedContainerService.HintSize="620,229" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="688,173" sap2010:WorkflowViewState.IdRef="LogMessage_8" Message="[&quot;Start UnderSettlement Calculations&quot;]" />
+    <Sequence DisplayName="Make Under Settlement Record" sap:VirtualizedContainerService.HintSize="688,229" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -127,7 +128,7 @@
         </ui:ExecuteQuery.Parameters>
       </ui:ExecuteQuery>
     </Sequence>
-    <Sequence DisplayName="Get Not Calculated Records" sap:VirtualizedContainerService.HintSize="620,229" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Get Not Calculated Records" sap:VirtualizedContainerService.HintSize="688,229" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -139,38 +140,38 @@
         </ui:ExecuteQuery.Parameters>
       </ui:ExecuteQuery>
     </Sequence>
-    <Sequence DisplayName="Calculate UnderSettlement for All Not calculated records" sap:VirtualizedContainerService.HintSize="620,2371" sap2010:WorkflowViewState.IdRef="Sequence_4">
+    <Sequence DisplayName="Calculate UnderSettlement for All Not calculated records" sap:VirtualizedContainerService.HintSize="688,3197" sap2010:WorkflowViewState.IdRef="Sequence_4">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_NotCalcultedRecords]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="586,2288" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_NotCalcultedRecords]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="654,3114" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
         <ui:ForEachRow.Body>
           <ActivityAction x:TypeArguments="sd:DataRow">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="552,2101" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="620,2927" sap2010:WorkflowViewState.IdRef="Sequence_5">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Calculate UnderSettlement For: &quot;+CurrentRow(0).ToString]" />
-              <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_CoreTrxCount]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="518,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;SELECT COUNT(*) AS CoreCount&#xA;FROM [UiPath Processes Data].[dbo].[IPNReconciliation_ArchivingCoreBankingRowTransactions]&#xA;Where ProcessingDate='&quot;+CurrentRow(0).ToString.Replace(&quot;-&quot;,&quot;&quot;)+&quot;'&quot;]">
+              <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="586,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Calculate UnderSettlement For: &quot;+CurrentRow(0).ToString]" />
+              <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_CoreTrxCount]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="586,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;SELECT COUNT(*) AS CoreCount&#xA;FROM [UiPath Processes Data].[dbo].[IPNReconciliation_ArchivingCoreBankingRowTransactions]&#xA;Where ProcessingDate='&quot;+CurrentRow(0).ToString.Replace(&quot;-&quot;,&quot;&quot;)+&quot;'&quot;]">
                 <ui:ExecuteQuery.Parameters>
                   <scg:Dictionary x:TypeArguments="x:String, Argument" />
                 </ui:ExecuteQuery.Parameters>
               </ui:ExecuteQuery>
-              <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_Settlementtrxcount]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="518,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_9" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;SELECT COUNT(*) AS SettlementTrxCount&#xD;&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_Transactions]&#xD;&#xA;Where SwitchDate='&quot;+CurrentRow(0).ToString+&quot;'&quot;]">
+              <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_Settlementtrxcount]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="586,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_9" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;SELECT COUNT(*) AS SettlementTrxCount&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_Transactions]&#xA;Where SwitchDate='&quot;+CurrentRow(0).ToString+&quot;'&quot;]">
                 <ui:ExecuteQuery.Parameters>
                   <scg:Dictionary x:TypeArguments="x:String, Argument" />
                 </ui:ExecuteQuery.Parameters>
               </ui:ExecuteQuery>
-              <If Condition="[Cint(dt_CoreTrxCount(0)(0))&gt;0]" sap:VirtualizedContainerService.HintSize="518,1576" sap2010:WorkflowViewState.IdRef="If_1">
+              <If Condition="[Cint(dt_CoreTrxCount(0)(0))&gt;0]" sap:VirtualizedContainerService.HintSize="586,2402" sap2010:WorkflowViewState.IdRef="If_1">
                 <If.Then>
-                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,1045" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="552,1871" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="sd:DataTable" Name="dt_UnderSettlementCalculations" />
                     </Sequence.Variables>
@@ -179,15 +180,15 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Core Trx Found For: &quot;+CurrentRow(0).ToString]" />
-                    <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_UnderSettlementCalculations]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="450,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;SELECT &#xA;    s.SwitchDate AS [Date],&#xA;    MAX(CASE WHEN s.BankRole = 'PayeeBank' THEN s.BankRole END) AS PayeeBankRole,&#xA;    SUM(CASE WHEN s.BankRole = 'PayeeBank' THEN 1 ELSE 0 END) AS PayeeBankRoleTrxCount,&#xA;    SUM(CASE WHEN s.BankRole = 'PayeeBank' THEN CAST(s.TransactionAmount AS DECIMAL(18,2)) ELSE 0 END) AS PayeeBankRoleTrxAmount,&#xA;    MAX(CASE WHEN s.BankRole = 'PayerBank' THEN s.BankRole END) AS PayerBankRole,&#xA;    SUM(CASE WHEN s.BankRole = 'PayerBank' THEN 1 ELSE 0 END) AS PayerBankRoleTrxCount,&#xA;    SUM(CASE WHEN s.BankRole = 'PayerBank' THEN CAST(s.TransactionAmount AS DECIMAL(18,2)) ELSE 0 END) AS PayerBankRoleTrxAmount&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_Transactions] s&#xA;LEFT JOIN [UiPath Processes Data].[dbo].[IPNReconciliation_ArchivingCoreBankingRowTransactions] c&#xA;    ON s.TransactionId = LEFT(c.AdditionalInfo, 36)&#xA;    AND REPLACE(s.SwitchDate, '-', '') = c.ProcessingDate&#xA;    AND s.BankRole = REPLACE(c.GeneratedBankRole, ' ', '')&#xA;WHERE s.SwitchDate = '&quot;+in_SettlementDate+&quot;'&#xA;AND c.Id IS NULL&#xA;AND (&#xA;    (s.BankRole = 'PayerBank' AND s.TransactionRemark &lt;&gt; 'Refund') &#xA;    OR &#xA;    (s.BankRole = 'PayeeBank' AND s.ResponseDescription = 'Success')&#xA;)&#xA;GROUP BY s.SwitchDate;&quot;]">
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="518,173" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Core Trx Found For: &quot;+CurrentRow(0).ToString]" />
+                    <ui:ExecuteQuery ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DataTable="[dt_UnderSettlementCalculations]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="518,146" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;SELECT &#xA;    s.SwitchDate AS [Date],&#xA;    MAX(CASE WHEN s.BankRole = 'PayeeBank' THEN s.BankRole END) AS PayeeBankRole,&#xA;    SUM(CASE WHEN s.BankRole = 'PayeeBank' THEN 1 ELSE 0 END) AS PayeeBankRoleTrxCount,&#xA;    SUM(CASE WHEN s.BankRole = 'PayeeBank' THEN CAST(s.TransactionAmount AS DECIMAL(18,2)) ELSE 0 END) AS PayeeBankRoleTrxAmount,&#xA;    MAX(CASE WHEN s.BankRole = 'PayerBank' THEN s.BankRole END) AS PayerBankRole,&#xA;    SUM(CASE WHEN s.BankRole = 'PayerBank' THEN 1 ELSE 0 END) AS PayerBankRoleTrxCount,&#xA;    SUM(CASE WHEN s.BankRole = 'PayerBank' THEN CAST(s.TransactionAmount AS DECIMAL(18,2)) ELSE 0 END) AS PayerBankRoleTrxAmount&#xA;FROM [UiPath Processes Data].[dbo].[IPNSettlement_Transactions] s&#xA;LEFT JOIN [UiPath Processes Data].[dbo].[IPNReconciliation_ArchivingCoreBankingRowTransactions] c&#xA;    ON s.TransactionId = LEFT(c.AdditionalInfo, 36)&#xA;    AND REPLACE(s.SwitchDate, '-', '') = c.ProcessingDate&#xA;    AND s.BankRole = REPLACE(c.GeneratedBankRole, ' ', '')&#xA;WHERE s.SwitchDate = '&quot;+in_SettlementDate+&quot;'&#xA;AND c.Id IS NULL&#xA;AND (&#xA;    (s.BankRole = 'PayerBank' AND s.TransactionRemark &lt;&gt; 'Refund') &#xA;    OR &#xA;    (s.BankRole = 'PayeeBank' AND s.ResponseDescription = 'Success')&#xA;)&#xA;GROUP BY s.SwitchDate;&quot;]">
                       <ui:ExecuteQuery.Parameters>
                         <scg:Dictionary x:TypeArguments="x:String, Argument" />
                       </ui:ExecuteQuery.Parameters>
                     </ui:ExecuteQuery>
-                    <If Condition="[Cint(dt_SettlementTrxcount(0)(0))&gt;0]" sap:VirtualizedContainerService.HintSize="450,666" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If Condition="[Cint(dt_SettlementTrxcount(0)(0))&gt;0]" sap:VirtualizedContainerService.HintSize="518,1492" sap2010:WorkflowViewState.IdRef="If_2">
                       <If.Then>
-                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,135" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="484,961" sap2010:WorkflowViewState.IdRef="Sequence_8">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:Boolean" Name="[CInt]" />
                           </Sequence.Variables>
@@ -196,10 +197,10 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <If Condition="[CInt(dt_UnderSettlementCalculations.Rows.Count) &gt; 0]" sap:VirtualizedContainerService.HintSize="382,75" sap2010:WorkflowViewState.IdRef="If_3">
+                          <If Condition="[CInt(dt_UnderSettlementCalculations.Rows.Count) &gt; 0]" sap:VirtualizedContainerService.HintSize="450,901" sap2010:WorkflowViewState.IdRef="If_3">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
@@ -226,7 +227,7 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Update Undersettlement Calculations For: &quot;+CurrentRow(0).ToString]" />
-                                <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="382,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_10" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;UPDATE [UiPath Processes Data].[dbo].[IPNSettlement_UnderSettlement] &#xD;&#xA;SET &#xD;&#xA;    UnderSettlementState = '&quot; + &quot;Calculated&quot; + &quot;',&#xD;&#xA;    PayeeBankTrxCount = '&quot; + &quot;0&quot; + &quot;',&#xD;&#xA;    PayeeBankTrxAmount = '&quot; + &quot;0&quot; + &quot;',&#xD;&#xA;    PayerBankTrxCount = '&quot; + &quot;0&quot;  + &quot;',&#xD;&#xA;    PayerBankTrxAmount = '&quot; + &quot;0&quot; + &quot;',&#xD;&#xA;    UndersettlementCalculationDate = GETDATE()&#xD;&#xA;WHERE [Date] = '&quot; + CurrentRow(0).ToString + &quot;';&quot;]">
+                                <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" ConnectionString="[in_DBConnectionString]" DisplayName="Run Query" sap:VirtualizedContainerService.HintSize="382,137" sap2010:WorkflowViewState.IdRef="ExecuteQuery_10" ProviderName="Microsoft.Data.SqlClient" Sql="[&quot;UPDATE [UiPath Processes Data].[dbo].[IPNSettlement_UnderSettlement] &#xA;SET &#xA;    UnderSettlementState = '&quot; + &quot;Calculated&quot; + &quot;',&#xA;    PayeeBankTrxCount = '&quot; + &quot;0&quot; + &quot;',&#xA;    PayeeBankTrxAmount = '&quot; + &quot;0&quot; + &quot;',&#xA;    PayerBankTrxCount = '&quot; + &quot;0&quot;  + &quot;',&#xA;    PayerBankTrxAmount = '&quot; + &quot;0&quot; + &quot;',&#xA;    UndersettlementCalculationDate = GETDATE()&#xA;WHERE [Date] = '&quot; + CurrentRow(0).ToString + &quot;';&quot;]">
                                   <ui:ExecuteQuery.Parameters>
                                     <scg:Dictionary x:TypeArguments="x:String, Argument" />
                                   </ui:ExecuteQuery.Parameters>

@@ -14,6 +14,7 @@
       "Path": "Main.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&4028a370-e487-4ac4-ab30-ad51d220ba21",
         "SystemError&StateMachine_1",
         "BusinessRuleException&StateMachine_1",
         "Config&StateMachine_1",
@@ -21,8 +22,7 @@
         "BrowserStillOpen&TryCatch_6",
         "str_HtmlMailBody&Sequence_10",
         "str_ScreenshotsPath&Sequence_10",
-        "BrowserStillOpen&TryCatch_3",
-        "glb_str_CommunicationMatrixPath&77cbf251-e310-4d04-8ed1-82f0c3eb76a0"
+        "BrowserStillOpen&TryCatch_3"
       ],
       "ArgumentsSectionElementsOrder": [],
       "ConstantsSectionElementsOrder": [],
@@ -42,7 +42,7 @@
       "Path": "Process.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
-        "glb_str_CommunicationMatrixPath&77cbf251-e310-4d04-8ed1-82f0c3eb76a0"
+        "glb_str_CommunicationMatrixPath&4028a370-e487-4ac4-ab30-ad51d220ba21"
       ],
       "ArgumentsSectionElementsOrder": [
         "in_WorkingDay",
@@ -229,12 +229,12 @@
       "Path": "Bots/Reporter.xaml",
       "SortBy": 0,
       "VariablesSectionElementsOrder": [
+        "glb_str_CommunicationMatrixPath&4028a370-e487-4ac4-ab30-ad51d220ba21",
         "str_HtmlUnderSettlementRecords&Sequence_1",
         "str_UnderSettRecTemp&Sequence_1",
         "dt_RecentSettlementResults&Sequence_1",
         "dt_UnderSettlementrecords&Sequence_1",
         "dt_RowTransactionData&Sequence_1",
-        "glb_str_CommunicationMatrixPath&77cbf251-e310-4d04-8ed1-82f0c3eb76a0",
         "str_HtmlMailTemp&Sequence_1",
         "dt_SettlementResults&Sequence_1"
       ],

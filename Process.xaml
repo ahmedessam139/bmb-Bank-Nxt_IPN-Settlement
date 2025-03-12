@@ -280,21 +280,16 @@
       <x:Reference>__ReferenceID3</x:Reference>
       <x:Reference>__ReferenceID4</x:Reference>
       <x:Reference>__ReferenceID5</x:Reference>
-      <FlowDecision x:Name="__ReferenceID7" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="60,60" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
-        <FlowDecision.Condition>
-          <VisualBasicValue x:TypeArguments="x:Boolean" DisplayName="Visual basic value" ExpressionText="CType(in_Config(&quot;ActivateIPNFileRetrieving&quot;), Boolean)" />
-        </FlowDecision.Condition>
+      <FlowDecision x:Name="__ReferenceID7" Condition="[CType(in_Config(&quot;ActivateIPNFileRetrieving&quot;), Boolean)]" DisplayName="Flow Decision" sap:VirtualizedContainerService.HintSize="60,60" sap2010:WorkflowViewState.IdRef="FlowDecision_1" True="{x:Reference __ReferenceID6}" False="{x:Reference __ReferenceID0}">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <av:Point x:Key="ShapeLocation">100,120</av:Point>
             <av:PointCollection x:Key="TrueConnector">160,150 255,150</av:PointCollection>
             <av:Size x:Key="ShapeSize">60,60</av:Size>
+            <av:PointCollection x:Key="FalseConnector">130,180 130,210 470,210 470,185</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <FlowDecision.True>
-          <x:Reference>__ReferenceID6</x:Reference>
-        </FlowDecision.True>
       </FlowDecision>
     </Flowchart>
   </Sequence>
